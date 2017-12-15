@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 
 import garyapps.fyte.LoginActivity;
 import garyapps.fyte.Mocks.Mocks;
+import garyapps.fyte.Models.User;
+import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 import garyapps.fyte.Utilities.Shared;
 
 /**
@@ -11,14 +13,6 @@ import garyapps.fyte.Utilities.Shared;
  * the user.
  */
 public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world", "example:example"
-    };
 
     private final String mEmail;
     private final String mPassword;
@@ -32,26 +26,15 @@ public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        // TODO: attempt authentication against a network service.
 
-        try {
-            // Simulate network access.
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            return false;
+        Result<User> result = Shared.fyteAPI.loginUser(mEmail, mPassword);
+
+        if(!result.getError()) {
+            Shared.appUser = result.getResultObject();
+            return true;
         }
 
-        for (String credential : DUMMY_CREDENTIALS) {
-            String[] pieces = credential.split(":");
-            if (pieces[0].equals(mEmail)) {
-                // Account exists, return true if the password matches.
-                return pieces[1].equals(mPassword);
-            }
-        }
-
-        // TODO: register the new account here.
-        createUserAccount();
-        return true;
+        return false;
     }
 
     @Override
@@ -66,11 +49,6 @@ public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected void onCancelled() {
         mActivity.onLoginCancel();
-    }
-
-
-    private void createUserAccount(){
-        Shared.appUser = Mocks.getUser();
     }
 }
 

@@ -5,16 +5,18 @@ import java.util.List;
 import garyapps.fyte.Models.FightStyles.FightStyle;
 import garyapps.fyte.Models.Gym;
 import garyapps.fyte.Models.User;
+import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 
 /**
  * Created by Garrett on 12/14/2017.
  */
 public interface IFyteAPI {
 
-    public void createUser(User user);
-    public List<User> getGymMembers(int id);
-    public User getUser(String username);
-    public User getUser(int id);
-    public Gym getGym(int id);
-    public List<FightStyle> getFightingStyles();
+    public Result<Boolean> createUser(User user);
+    public Result<List<User>> getGymMembers(int id);
+    public Result<User> getUser(String username);
+    public Result<User> getUser(int id);
+    public Result<Gym> getGym(int id);
+    public Result<List<FightStyle>> getFightingStyles();
+    public Result<User> loginUser(String username, String password);
 }

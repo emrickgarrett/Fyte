@@ -7,6 +7,7 @@ import java.util.List;
 import garyapps.fyte.Models.FightStyles.FightStyle;
 import garyapps.fyte.Models.Gym;
 import garyapps.fyte.Models.User;
+import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,34 +34,36 @@ public class FyteAPI implements IFyteAPI{
     }
 
     @Override
-    public void createUser(User user){
-        Call<User> call = sharedAPI.createUser(user);
-        call.enqueue(new Callback<User>(){
+    public Result<Boolean> createUser(User user){
+        Call<Result<User>> call = sharedAPI.createUser(user);
+        call.enqueue(new Callback<Result<User>>(){
             @Override
-            public void onResponse(Call<User> call, Response<User> response){
+            public void onResponse(Call<Result<User>> call, Response<Result<User>> response){
                 int statusCode = response.code();
 
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t){
+            public void onFailure(Call<Result<User>> call, Throwable t){
                 //error
                 LogFyteFailure(t);
             }
         });
+
+        return new Result<Boolean>("",false,true);
     }
 
     @Override
-    public List<User> getGymMembers(int id){
-        Call<List<User>> call = sharedAPI.getGymMembers(id, "az");
-        call.enqueue(new Callback<List<User>>(){
+    public Result<List<User>> getGymMembers(int id){
+        Call<Result<List<User>>> call = sharedAPI.getGymMembers(id, "az");
+        call.enqueue(new Callback<Result<List<User>>>(){
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response){
+            public void onResponse(Call<Result<List<User>>> call, Response<Result<List<User>>> response){
                 int statusCode = response.code();
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t){
+            public void onFailure(Call<Result<List<User>>> call, Throwable t){
                 LogFyteFailure(t);
             }
         });
@@ -69,35 +72,17 @@ public class FyteAPI implements IFyteAPI{
     }
 
     @Override
-    public User getUser(String username){
-        Call<User> call = sharedAPI.getUser(username);
-        call.enqueue(new Callback<User>(){
+    public Result<User> getUser(String username){
+        Call<Result<User>> call = sharedAPI.getUser(username);
+        call.enqueue(new Callback<Result<User>>(){
             @Override
-            public void onResponse(Call<User> call, Response<User> response){
-                int statusCode = response.code();
-                //do work with body
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t){
-                LogFyteFailure(t);
-            }
-        });
-        return null;
-    }
-
-    @Override
-    public User getUser(int id){
-        Call<User> call = sharedAPI.getUser(id);
-        call.enqueue(new Callback<User>(){
-            @Override
-            public void onResponse(Call<User> call, Response<User> response){
+            public void onResponse(Call<Result<User>> call, Response<Result<User>> response){
                 int statusCode = response.code();
                 //do work with body
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t){
+            public void onFailure(Call<Result<User>> call, Throwable t){
                 LogFyteFailure(t);
             }
         });
@@ -105,16 +90,34 @@ public class FyteAPI implements IFyteAPI{
     }
 
     @Override
-    public Gym getGym(int id){
-        Call<Gym> call = sharedAPI.getGym(id);
-        call.enqueue(new Callback<Gym>(){
+    public Result<User> getUser(int id){
+        Call<Result<User>> call = sharedAPI.getUser(id);
+        call.enqueue(new Callback<Result<User>>(){
             @Override
-            public void onResponse(Call<Gym> call, Response<Gym> response){
+            public void onResponse(Call<Result<User>> call, Response<Result<User>> response){
+                int statusCode = response.code();
+                //do work with body
+            }
+
+            @Override
+            public void onFailure(Call<Result<User>> call, Throwable t){
+                LogFyteFailure(t);
+            }
+        });
+        return null;
+    }
+
+    @Override
+    public Result<Gym> getGym(int id){
+        Call<Result<Gym>> call = sharedAPI.getGym(id);
+        call.enqueue(new Callback<Result<Gym>>(){
+            @Override
+            public void onResponse(Call<Result<Gym>> call, Response<Result<Gym>> response){
                 int statusCode = response.code();
             }
 
             @Override
-            public void onFailure(Call<Gym> call, Throwable t){
+            public void onFailure(Call<Result<Gym>> call, Throwable t){
                 LogFyteFailure(t);
             }
         });
@@ -122,18 +125,35 @@ public class FyteAPI implements IFyteAPI{
     }
 
     @Override
-    public List<FightStyle> getFightingStyles(){
-        Call<List<FightStyle>> call = sharedAPI.getFightingStyles();
-        call.enqueue(new Callback<List<FightStyle>>(){
+    public Result<List<FightStyle>> getFightingStyles(){
+        Call<Result<List<FightStyle>>> call = sharedAPI.getFightingStyles();
+        call.enqueue(new Callback<Result<List<FightStyle>>>(){
            @Override
-            public void onResponse(Call<List<FightStyle>> call, Response<List<FightStyle>> response){
+            public void onResponse(Call<Result<List<FightStyle>>> call, Response<Result<List<FightStyle>>> response){
                int statusCode = response.code();
            }
 
            @Override
-            public void onFailure(Call<List<FightStyle>> call, Throwable t){
+            public void onFailure(Call<Result<List<FightStyle>>> call, Throwable t){
                 LogFyteFailure(t);
            }
+        });
+        return null;
+    }
+
+    @Override
+    public Result<User> loginUser(String username, String password){
+        Call<Result<User>> call = sharedAPI.login(username, password);
+        call.enqueue(new Callback<Result<User>>(){
+            @Override
+            public void onResponse(Call<Result<User>> call, Response<Result<User>> response){
+                //dowork
+            }
+
+            @Override
+            public void onFailure(Call<Result<User>> call, Throwable t){
+
+            }
         });
         return null;
     }
