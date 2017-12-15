@@ -26,16 +26,20 @@ public class Shared {
         switch(environment){
             case Release:
                 Shared.fyteAPI = new FyteAPI();
+                Shared.Environment = BuildType.Release;
                 break;
             case Dev:
                 Shared.fyteAPI = new FyteAPI();
+                Shared.Environment = BuildType.Dev;
                 break;
             case Test:
                 Shared.fyteAPI = new FyteAPIMock();
+                Shared.Environment = BuildType.Test;
                 break;
         }
     }
 
     public static User appUser;
     public static IFyteAPI fyteAPI;
+    public static BuildType Environment;
 }

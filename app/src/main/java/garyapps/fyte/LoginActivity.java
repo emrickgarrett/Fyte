@@ -59,13 +59,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
-    private Shared.BuildType environment = Shared.BuildType.Test;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Shared.initSharedAttributes(environment);
+        Shared.initSharedAttributes(Shared.BuildType.Test);
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -192,13 +190,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        if(environment == Shared.BuildType.Test) return true;
+        if(Shared.Environment == Shared.BuildType.Test) return true;
 
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        if(environment == Shared.BuildType.Test) return true;
+        if(Shared.Environment == Shared.BuildType.Test) return true;
 
         return password.length() > 4;
     }
