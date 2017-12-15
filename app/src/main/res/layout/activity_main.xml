@@ -7,8 +7,9 @@
     android:layout_height="match_parent"
     tools:context="garyapps.fyte.MainActivity">
 
-    <LinearyLayout
+    <LinearLayout
         android:id="@+id/main_linear_layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintLeft_toLeftOf="parent"

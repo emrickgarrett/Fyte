@@ -37,7 +37,7 @@ public class FyteAPIMock implements IFyteAPI {
 
     @Override
     public Result<Gym> getGym(int id) {
-        return new Result<Gym>("", false, Mocks.getAGym());
+        return new Result<Gym>("", false, Mocks.getGym());
     }
 
     @Override

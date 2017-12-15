@@ -27,7 +27,7 @@ public class Mocks {
 
     public static List<User> getMembers(){
         List<User> list = new ArrayList<User>();
-        list.add(new User("Garrett", "Emrick", "emrickgj@miamioh.edu", getGyms(), getFightingStyles()));
+        list.add(new User("Garrett", "Emrick", "emrickgj@miamioh.edu"));
         list.add(new User("Karl", "Buechler"));
         list.add(new User("Randy", "Lee"));
 
@@ -36,9 +36,13 @@ public class Mocks {
 
     public static List<Gym> getGyms(){
         List<Gym> list = new ArrayList<Gym>();
-        list.add(new Gym("Cies MMA", getUser(), getMembers()));
+        list.add(new Gym("Cies MMA", new User("Mike", "Cies"), getMembers()));
 
         return list;
+    }
+
+    public static Gym getGym(){
+        return getGyms().get(0);
     }
 
     public static List<FightMove> getMoves(){
@@ -53,9 +57,4 @@ public class Mocks {
     public static FightMove getAMove(){
         return Mocks.getMoves().get(0);
     }
-
-    public static Gym getAGym(){
-        return Mocks.getGyms().get(0);
-    }
-
 }
