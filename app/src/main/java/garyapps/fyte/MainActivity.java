@@ -8,9 +8,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import garyapps.fyte.ViewControllers.UserGymsViewController;
+import garyapps.fyte.ViewControllers.HomeViewController;
+import garyapps.fyte.ViewControllers.TrackerViewController;
+
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout container;
+
+    private HomeViewController homeController;
+    private TrackerViewController trackerController;
+    private UserGymsViewController gymController;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -21,15 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    //Add Subview to Container
-                    View homeView = getLayoutInflater().inflate(R.layout.home_view, null);
-                    container.addView(homeView);
+                    container.addView(homeController.getView());
                     return true;
                 case R.id.navigation_tracker:
-                    //Add subview to Container
+                    container.addView(trackerController.getView());
                     return true;
                 case R.id.navigation_mygym:
-                    //Add subview to container
+                    container.addView(gymController.getView());
                     return true;
             }
             return false;
@@ -43,8 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
         container = findViewById(R.id.main_linear_layout);
 
+        createViewControllers();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private void createViewControllers(){
+        homeController = new HomeViewController(this);
+        trackerController = new TrackerViewController(this);
+        gymController = new UserGymsViewController(this);
+        View homeView = getLayoutInflater().inflate(R.layout.home_view, null);
     }
 
 }
