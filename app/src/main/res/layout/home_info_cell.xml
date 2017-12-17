@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/home_info_cell_image"
+        android:layout_height="75dp"
+        android:layout_width="75dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/com_vstechlab_lib_ic_launcher"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/home_info_cell_image"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/home_info_cell_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Cell Name"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/home_info_cell_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Lorem Ispum Dolorem rectum"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/home_info_cell_action_image"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/tick16x17"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"/>
+
+</RelativeLayout>

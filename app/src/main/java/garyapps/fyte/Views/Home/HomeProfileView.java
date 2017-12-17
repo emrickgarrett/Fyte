@@ -1,11 +1,9 @@
-package garyapps.fyte.Views;
+package garyapps.fyte.Views.Home;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import garyapps.fyte.R;
@@ -27,7 +25,7 @@ public class HomeProfileView extends RelativeLayout {
     public HomeProfileView(Activity context) {
         super(context);
 
-        View v = context.getLayoutInflater().inflate(R.layout.home_profile_table_row, null);
+        View v = context.getLayoutInflater().inflate(R.layout.home_profile_cell, null);
 
         v.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 200));
 
