@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import garyapps.fyte.Adapters.HomeViewTableRowAdapter;
 import garyapps.fyte.Enums.HomeCellType;
 import garyapps.fyte.Models.Cells.Home.AcknowledgementCell;
 import garyapps.fyte.Models.Cells.Home.HomeInfoCell;
@@ -57,41 +58,5 @@ public class HomeViewController extends ViewController {
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(adapter);
-    }
-}
-
-class HomeViewTableRowAdapter extends ArrayAdapter<HomeTableRowModel> implements AdapterView.OnItemClickListener {
-    private final Context context;
-    private final ArrayList<HomeTableRowModel> data;
-    private final ArrayList<HomeInfoCell> cells = new ArrayList<HomeInfoCell>();
-
-    public HomeViewTableRowAdapter(Activity context, ArrayList<HomeTableRowModel> data) {
-        super(context, -1, data);
-        this.context = context;
-        this.data = data;
-        for(int i = 0; i < data.size(); i++){
-            cells.add(createCell(context.getLayoutInflater().inflate(R.layout.home_info_cell, null), data.get(i)));
-        }
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        return cells.get(position).getView();
-    }
-
-    private HomeInfoCell createCell(View rowView, HomeTableRowModel model){
-        switch(model.type){
-            case Acknowledge:
-                return new AcknowledgementCell(rowView, model);
-
-        }
-        return null;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        cells.get(position).onClick(parent, view, position, id);
     }
 }
