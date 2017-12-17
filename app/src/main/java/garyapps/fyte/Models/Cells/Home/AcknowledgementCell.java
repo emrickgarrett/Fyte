@@ -1,5 +1,6 @@
 package garyapps.fyte.Models.Cells.Home;
 
+import android.media.Image;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,6 +25,8 @@ public class AcknowledgementCell extends HomeInfoCell {
     private void createDefaultAcknowledgement(){
         this.cellTitle.setText("Default Acknowledgement");
         this.cellDesc.setText("This will be a simple acknowledgement that the user clicks to remove");
+        this.cellImage.setImageResource(android.R.drawable.ic_menu_info_details);
+        this.cellActionImage.setImageResource(android.R.drawable.btn_star);
     }
 
     @Override
