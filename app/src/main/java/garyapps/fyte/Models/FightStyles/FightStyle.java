@@ -14,7 +14,8 @@ public final class FightStyle {
     private List<FightMove> moves;
 
     public FightStyle(String name, List<FightMove> moves){
-
+        this.name = name;
+        this.moves = moves;
     }
 
     public List<FightMove> getMoves(){
@@ -23,5 +24,21 @@ public final class FightStyle {
 
     public void setMoves(){
         this.moves = moves;
+    }
+
+    public String getName() { return this.name; }
+
+    @Override
+    public boolean equals(Object other){
+        if(other == null) return false;
+        if(other == this) return true;
+
+        if(other instanceof FightStyle){
+            FightStyle temp = (FightStyle) other;
+            if(temp.getName() != this.getName()) return false;
+            //compare lists as well
+        }
+
+        return true;
     }
 }

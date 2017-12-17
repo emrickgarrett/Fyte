@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         homeController = new HomeViewController(this);
         trackerController = new TrackerViewController(this);
         gymController = new UserGymsViewController(this);
-        View homeView = getLayoutInflater().inflate(R.layout.home_view, null);
     }
 
 }

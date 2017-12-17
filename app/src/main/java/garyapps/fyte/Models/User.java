@@ -2,6 +2,7 @@ package garyapps.fyte.Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Iterator;
 import java.util.List;
 
 import garyapps.fyte.Models.FightStyles.FightStyle;
@@ -55,5 +56,21 @@ public class User {
     }
 
     //METHODS
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
+    public String getFightingStylesListAsString(){
+        String ret = "";
+        for(int i = 0; i < fightingStyles.size(); i++){
+            if(i == 0){
+                ret += fightingStyles.get(0).getName();
+            }else{
+                ret += ", " + fightingStyles.get(i).getName();
+            }
+        }
+
+        return ret;
+    }
 
 }

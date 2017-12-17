@@ -17,4 +17,6 @@
     <string name="title_home">Home</string>
     <string name="title_tracker">Tracker</string>
     <string name="title_mygym">My Gym</string>
+
+    <string name="profile_fightstyles_text">Disciplines:</string>
 </resources>
