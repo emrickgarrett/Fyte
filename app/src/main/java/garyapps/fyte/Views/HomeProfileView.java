@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -14,7 +15,7 @@ import garyapps.fyte.Utilities.Shared;
  * Created by garrettemrick on 12/17/17.
  */
 
-public class HomeProfileView extends TableRow {
+public class HomeProfileView extends RelativeLayout {
 
     private TextView fullNameTv;
     private TextView fightingStylesTv;
