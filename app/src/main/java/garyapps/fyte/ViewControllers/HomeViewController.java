@@ -1,27 +1,16 @@
 package garyapps.fyte.ViewControllers;
 
 import android.app.Activity;
-import android.content.Context;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import garyapps.fyte.Adapters.HomeViewTableRowAdapter;
-import garyapps.fyte.Enums.HomeCellType;
-import garyapps.fyte.Models.Cells.Home.AcknowledgementCell;
-import garyapps.fyte.Models.Cells.Home.HomeInfoCell;
+import garyapps.fyte.Adapters.FyteTableRowAdapter;
+import garyapps.fyte.Enums.FyteCellType;
 import garyapps.fyte.R;
 import garyapps.fyte.Views.Home.HomeProfileView;
-import garyapps.fyte.Models.HomeTableRowModel;
+import garyapps.fyte.Models.FyteTableRowModel;
 
 /**
  * Created by Garrett on 12/14/2017.
@@ -51,11 +40,11 @@ public class HomeViewController extends ViewController {
     }
 
     private void createInfoCells(){
-        ArrayList<HomeTableRowModel> cells = new ArrayList<HomeTableRowModel>();
-        cells.add(new HomeTableRowModel("Default Acknowledgement", "", HomeCellType.Acknowledge));
-        cells.add(new HomeTableRowModel("Alert Cell", "", HomeCellType.Alert));
+        ArrayList<FyteTableRowModel> cells = new ArrayList<FyteTableRowModel>();
+        cells.add(new FyteTableRowModel("Default Acknowledgement", "", FyteCellType.Acknowledge));
+        cells.add(new FyteTableRowModel("Alert Cell", "", FyteCellType.Alert));
 
-        HomeViewTableRowAdapter adapter = new HomeViewTableRowAdapter(context, cells);
+        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(adapter);

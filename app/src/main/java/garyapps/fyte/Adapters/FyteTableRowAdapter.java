@@ -2,7 +2,6 @@ package garyapps.fyte.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,10 +9,11 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
-import garyapps.fyte.Models.Cells.Home.AcknowledgementCell;
-import garyapps.fyte.Models.Cells.Home.AlertCell;
-import garyapps.fyte.Models.Cells.Home.HomeInfoCell;
-import garyapps.fyte.Models.HomeTableRowModel;
+import garyapps.fyte.Models.Cells.AcknowledgementCell;
+import garyapps.fyte.Models.Cells.AlertCell;
+import garyapps.fyte.Models.Cells.DisciplineCell;
+import garyapps.fyte.Models.Cells.FyteInfoCell;
+import garyapps.fyte.Models.FyteTableRowModel;
 import garyapps.fyte.R;
 
 /**
@@ -21,12 +21,12 @@ import garyapps.fyte.R;
  */
 
 
-public class HomeViewTableRowAdapter extends ArrayAdapter<HomeTableRowModel> implements AdapterView.OnItemClickListener {
+public class FyteTableRowAdapter extends ArrayAdapter<FyteTableRowModel> implements AdapterView.OnItemClickListener {
     private final Context context;
-    private final ArrayList<HomeTableRowModel> data;
-    private final ArrayList<HomeInfoCell> cells = new ArrayList<HomeInfoCell>();
+    private final ArrayList<FyteTableRowModel> data;
+    private final ArrayList<FyteInfoCell> cells = new ArrayList<FyteInfoCell>();
 
-    public HomeViewTableRowAdapter(Activity context, ArrayList<HomeTableRowModel> data) {
+    public FyteTableRowAdapter(Activity context, ArrayList<FyteTableRowModel> data) {
         super(context, -1, data);
         this.context = context;
         this.data = data;
@@ -40,12 +40,14 @@ public class HomeViewTableRowAdapter extends ArrayAdapter<HomeTableRowModel> imp
         return cells.get(position).getView();
     }
 
-    private HomeInfoCell createCell(View rowView, HomeTableRowModel model){
+    private FyteInfoCell createCell(View rowView, FyteTableRowModel model){
         switch(model.type){
             case Acknowledge:
                 return new AcknowledgementCell(rowView, model);
             case Alert:
                 return new AlertCell(rowView, model);
+            case Discipline:
+                return new DisciplineCell(rowView, model);
 
         }
         return null;

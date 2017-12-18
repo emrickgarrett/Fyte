@@ -1,22 +1,19 @@
-package garyapps.fyte.Models.Cells.Home;
+package garyapps.fyte.Models.Cells;
 
-import android.media.Image;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 
-import garyapps.fyte.Adapters.HomeViewTableRowAdapter;
-import garyapps.fyte.Models.HomeTableRowModel;
-import garyapps.fyte.R;
+import garyapps.fyte.Adapters.FyteTableRowAdapter;
+import garyapps.fyte.Models.FyteTableRowModel;
 
 /**
  * Created by garrettemrick on 12/17/17.
  */
 
-public class AcknowledgementCell extends HomeInfoCell {
+public class AcknowledgementCell extends FyteInfoCell {
 
-    public AcknowledgementCell(View v, HomeTableRowModel model){
+    public AcknowledgementCell(View v, FyteTableRowModel model){
         super(v, model);
 
         createDefaultAcknowledgement();
@@ -30,7 +27,7 @@ public class AcknowledgementCell extends HomeInfoCell {
     }
 
     @Override
-    public void onClick(final HomeViewTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
+    public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
         Animation anim = slideOutRightAnimation();
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override

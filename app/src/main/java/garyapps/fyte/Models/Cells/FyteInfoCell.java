@@ -1,4 +1,4 @@
-package garyapps.fyte.Models.Cells.Home;
+package garyapps.fyte.Models.Cells;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -8,24 +8,24 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import garyapps.fyte.Adapters.HomeViewTableRowAdapter;
-import garyapps.fyte.Models.HomeTableRowModel;
+import garyapps.fyte.Adapters.FyteTableRowAdapter;
+import garyapps.fyte.Models.FyteTableRowModel;
 import garyapps.fyte.R;
 
 /**
  * Created by garrettemrick on 12/17/17.
  */
 
-public class HomeInfoCell{
+public class FyteInfoCell {
 
     protected ImageView cellImage;
     protected TextView cellTitle;
     protected TextView cellDesc;
     protected ImageView cellActionImage;
     protected View view;
-    protected HomeTableRowModel model;
+    protected FyteTableRowModel model;
 
-    public HomeInfoCell(View v, HomeTableRowModel model){
+    public FyteInfoCell(View v, FyteTableRowModel model){
         bindViews(v, model);
     }
 
@@ -39,7 +39,7 @@ public class HomeInfoCell{
         cellActionImage = v.findViewById(R.id.home_info_cell_action_image);
     }
 
-    private void bindViews(View v, HomeTableRowModel model) {
+    private void bindViews(View v, FyteTableRowModel model) {
         this.bindViews(v);
         this.model = model;
 
@@ -57,7 +57,7 @@ public class HomeInfoCell{
         }
     }
 
-    public void onClick(final HomeViewTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
+    public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
         Animation anim = slideOutRightAnimation();
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -96,7 +96,7 @@ public class HomeInfoCell{
         return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_in_left);
     }
 
-    public HomeTableRowModel getModel(){
+    public FyteTableRowModel getModel(){
         return model;
     }
 }
