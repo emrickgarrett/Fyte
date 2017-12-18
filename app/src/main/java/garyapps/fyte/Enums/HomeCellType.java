@@ -5,8 +5,6 @@ package garyapps.fyte.Enums;
  */
 
 public enum HomeCellType {
-    Info,
-    Streak,
     Alert,
     Acknowledge,
     Default

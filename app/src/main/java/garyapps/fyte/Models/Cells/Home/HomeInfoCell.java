@@ -23,10 +23,8 @@ public class HomeInfoCell{
     protected TextView cellDesc;
     protected ImageView cellActionImage;
     protected View view;
+    protected HomeTableRowModel model;
 
-    public HomeInfoCell(View v){
-        bindViews(v);
-    }
     public HomeInfoCell(View v, HomeTableRowModel model){
         bindViews(v, model);
     }
@@ -43,6 +41,7 @@ public class HomeInfoCell{
 
     private void bindViews(View v, HomeTableRowModel model) {
         this.bindViews(v);
+        this.model = model;
 
         if (model.imageId != -1) {
             cellImage.setImageDrawable(Drawable.createFromPath(""));
@@ -59,7 +58,7 @@ public class HomeInfoCell{
     }
 
     public void onClick(final HomeViewTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
-        Animation anim = AnimationUtils.loadAnimation(adapter.getContext(), R.anim.anim_slide_out_right);
+        Animation anim = slideOutRightAnimation();
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -79,5 +78,25 @@ public class HomeInfoCell{
         });
 
         view.startAnimation(anim);
+    }
+
+    protected Animation slideOutRightAnimation(){
+        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_out_right);
+    }
+
+    protected Animation slideInRighttAnimation(){
+        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_in_right);
+    }
+
+    protected Animation slideOutLeftAnimation(){
+        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_out_left);
+    }
+
+    protected Animation slideInLeftAnimation(){
+        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_in_left);
+    }
+
+    public HomeTableRowModel getModel(){
+        return model;
     }
 }

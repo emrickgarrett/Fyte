@@ -1,32 +1,32 @@
 package garyapps.fyte.Models.Cells.Home;
 
-import android.media.Image;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import garyapps.fyte.Adapters.HomeViewTableRowAdapter;
 import garyapps.fyte.Models.HomeTableRowModel;
 import garyapps.fyte.R;
 
 /**
- * Created by garrettemrick on 12/17/17.
+ * Created by garrettemrick on 12/18/17.
  */
 
-public class AcknowledgementCell extends HomeInfoCell {
+public class AlertCell extends HomeInfoCell {
 
-    public AcknowledgementCell(View v, HomeTableRowModel model){
+    public AlertCell(View v, HomeTableRowModel model) {
         super(v, model);
 
-        createDefaultAcknowledgement();
+        createAlert();
     }
 
-    private void createDefaultAcknowledgement(){
-        this.cellTitle.setText("Default Acknowledgement");
-        this.cellDesc.setText("This will be a simple acknowledgement that the user clicks to remove");
-        this.cellImage.setImageResource(android.R.drawable.ic_menu_info_details);
-        this.cellActionImage.setImageResource(android.R.drawable.btn_star);
+    private void createAlert(){
+        this.cellTitle.setText("Default Alert");
+        this.cellDesc.setText("This will be a simple alert that the user clicks to take an action");
+        this.cellImage.setImageResource(android.R.drawable.ic_dialog_alert);
+        this.cellActionImage.setImageResource(android.R.drawable.ic_menu_edit);
     }
 
     @Override
@@ -41,6 +41,7 @@ public class AcknowledgementCell extends HomeInfoCell {
             @Override
             public void onAnimationEnd(Animation animation) {
                 adapter.removeCell(position);
+                takeAction();
 
             }
 
@@ -51,5 +52,9 @@ public class AcknowledgementCell extends HomeInfoCell {
         });
 
         view.startAnimation(anim);
+    }
+
+    protected void takeAction(){
+        Toast.makeText(view.getContext(), "Example Action", Toast.LENGTH_SHORT).show();
     }
 }

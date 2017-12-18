@@ -16,7 +16,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_toRightOf="@id/home_info_cell_image"
-        android:layout_centerVertical="true">
+        android:layout_toLeftOf="@id/home_info_cell_action_image"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/home_info_cell_title"

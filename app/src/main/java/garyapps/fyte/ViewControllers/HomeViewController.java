@@ -52,7 +52,8 @@ public class HomeViewController extends ViewController {
 
     private void createInfoCells(){
         ArrayList<HomeTableRowModel> cells = new ArrayList<HomeTableRowModel>();
-        cells.add(new HomeTableRowModel("Default Acknowledgement", "Default Desc", HomeCellType.Acknowledge));
+        cells.add(new HomeTableRowModel("Default Acknowledgement", "", HomeCellType.Acknowledge));
+        cells.add(new HomeTableRowModel("Alert Cell", "", HomeCellType.Alert));
 
         HomeViewTableRowAdapter adapter = new HomeViewTableRowAdapter(context, cells);
 

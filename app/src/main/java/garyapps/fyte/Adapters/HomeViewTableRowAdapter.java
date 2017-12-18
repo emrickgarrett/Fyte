@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 import garyapps.fyte.Models.Cells.Home.AcknowledgementCell;
+import garyapps.fyte.Models.Cells.Home.AlertCell;
 import garyapps.fyte.Models.Cells.Home.HomeInfoCell;
 import garyapps.fyte.Models.HomeTableRowModel;
 import garyapps.fyte.R;
@@ -36,8 +37,6 @@ public class HomeViewTableRowAdapter extends ArrayAdapter<HomeTableRowModel> imp
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         return cells.get(position).getView();
     }
 
@@ -45,6 +44,8 @@ public class HomeViewTableRowAdapter extends ArrayAdapter<HomeTableRowModel> imp
         switch(model.type){
             case Acknowledge:
                 return new AcknowledgementCell(rowView, model);
+            case Alert:
+                return new AlertCell(rowView, model);
 
         }
         return null;
@@ -56,8 +57,8 @@ public class HomeViewTableRowAdapter extends ArrayAdapter<HomeTableRowModel> imp
     }
 
     public void removeCell(int index){
-        cells.remove(index);
-        data.remove(index);
+        this.remove(cells.get(index).getModel());
+        this.cells.remove(index);
         this.notifyDataSetChanged();
     }
 }
