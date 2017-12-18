@@ -3,8 +3,7 @@ package garyapps.fyte.Services.WebServices;
 import android.os.AsyncTask;
 
 import garyapps.fyte.LoginActivity;
-import garyapps.fyte.Mocks.Mocks;
-import garyapps.fyte.Models.User;
+import garyapps.fyte.Models.UserData.User;
 import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 import garyapps.fyte.Utilities.Shared;
 

@@ -6,7 +6,9 @@ import java.util.List;
 import garyapps.fyte.Models.FightMove;
 import garyapps.fyte.Models.FightStyles.FightStyle;
 import garyapps.fyte.Models.Gym;
-import garyapps.fyte.Models.User;
+import garyapps.fyte.Models.UserData.ContactInformation;
+import garyapps.fyte.Models.UserData.TrainingData;
+import garyapps.fyte.Models.UserData.User;
 
 /**
  * Created by Garrett on 12/14/2017.
@@ -22,7 +24,8 @@ public class Mocks {
     }
 
     public static User getUser(){
-        return new User("Garrett", "Emrick","emrickgj@miamioh.edu", getGyms(), getFightingStyles());
+        return new User(new ContactInformation("Garrett", "Emrick","emrickgj@miamioh.edu"),
+                getGyms(), getFightingStyles(), new TrainingData(226, 6));
     }
 
     public static List<User> getMembers(){

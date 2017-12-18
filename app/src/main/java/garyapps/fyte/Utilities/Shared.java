@@ -1,9 +1,7 @@
 package garyapps.fyte.Utilities;
 
-import android.annotation.SuppressLint;
-
 import garyapps.fyte.Mocks.FyteAPIMock;
-import garyapps.fyte.Models.User;
+import garyapps.fyte.Models.UserData.User;
 import garyapps.fyte.Services.WebServices.FyteApi.FyteAPI;
 import garyapps.fyte.Services.WebServices.FyteApi.IFyteAPI;
 

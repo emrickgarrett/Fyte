@@ -47,8 +47,8 @@ public class HomeProfileView extends RelativeLayout {
         fullNameTv.setText(Shared.appUser.getFullName());
         fightingStylesTv.setText(Shared.appUser.getFightingStylesListAsString());
         dayStreakLabelTv.setText("days");
-        dayStreakNumberTv.setText("10");
-        sessionNumberTv.setText("216");
+        dayStreakNumberTv.setText(Shared.appUser.getDayStreak() + "");
+        sessionNumberTv.setText(Shared.appUser.getSessionCounter() + "");
         sessionLabelTv.setText("sessions");
     }
 

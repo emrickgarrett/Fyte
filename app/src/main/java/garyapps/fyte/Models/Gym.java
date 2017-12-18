@@ -2,6 +2,8 @@ package garyapps.fyte.Models;
 
 import java.util.List;
 
+import garyapps.fyte.Models.UserData.User;
+
 /**
  * Created by Garrett on 12/14/2017.
  */
