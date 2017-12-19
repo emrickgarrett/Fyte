@@ -31,7 +31,7 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteTableRowModel> impleme
         this.context = context;
         this.data = data;
         for(int i = 0; i < data.size(); i++){
-            cells.add(createCell(context.getLayoutInflater().inflate(R.layout.home_info_cell, null), data.get(i)));
+            cells.add(createCell(context, data.get(i)));
         }
     }
 
@@ -40,14 +40,16 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteTableRowModel> impleme
         return cells.get(position).getView();
     }
 
-    private FyteInfoCell createCell(View rowView, FyteTableRowModel model){
+    private FyteInfoCell createCell(Activity context, FyteTableRowModel model){
         switch(model.type){
             case Acknowledge:
-                return new AcknowledgementCell(rowView, model);
+                return new AcknowledgementCell(context, model);
             case Alert:
-                return new AlertCell(rowView, model);
+                return new AlertCell(context, model);
             case Discipline:
-                return new DisciplineCell(rowView, model);
+                return new DisciplineCell(context, model);
+            case Default:
+                return new FyteInfoCell(context, model);
 
         }
         return null;

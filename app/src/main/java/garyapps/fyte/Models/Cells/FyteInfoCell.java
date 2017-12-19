@@ -1,5 +1,7 @@
 package garyapps.fyte.Models.Cells;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.Animation;
@@ -25,8 +27,8 @@ public class FyteInfoCell {
     protected View view;
     protected FyteTableRowModel model;
 
-    public FyteInfoCell(View v, FyteTableRowModel model){
-        bindViews(v, model);
+    public FyteInfoCell(Activity context, FyteTableRowModel model){
+        bindViews(context.getLayoutInflater().inflate(R.layout.home_info_cell, null), model);
     }
 
     public View getView(){ return view; }

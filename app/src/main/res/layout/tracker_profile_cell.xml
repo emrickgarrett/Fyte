@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <TextView
+        android:id="@+id/tracker_profile_full_name"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:hint="Garrett Emrick"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/tracker_profile_totalTrainingSessionsNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="217"
+        android:layout_above="@id/tracker_profile_separator_view"
+        android:fontFamily="sans-serif"
+        android:layout_marginRight="5dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tracker_profile_totalTrainingSessionsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="sessions"
+        android:layout_above="@id/tracker_profile_separator_view"
+        android:fontFamily="sans-serif"
+        android:layout_toRightOf="@id/tracker_profile_totalTrainingSessionsNumber"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tracker_profile_currentDayStreakDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="days"
+        android:layout_above="@id/tracker_profile_separator_view"
+        android:layout_alignParentRight="true"
+        android:fontFamily="sans-serif"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tracker_profile_currentDayStreakNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="3"
+        android:layout_toLeftOf="@id/tracker_profile_currentDayStreakDays"
+        android:layout_above="@id/tracker_profile_separator_view"
+        android:layout_marginRight="5dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:id="@+id/tracker_profile_separator_view"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        />
+
+
+</RelativeLayout>
