@@ -43,10 +43,6 @@ public class TrackerProfileView extends RelativeLayout{
 
     private void bindValues(){
         this.userName.setText(Shared.appUser.getFullName());
-        this.sessionCounter.setText(Shared.appUser.getSessionCounter() + "");
-        this.sessionLabel.setText("Sessions");
-        this.streakCounter.setText(Shared.appUser.getDayStreak() + "");
-        this.streakLabel.setText("days");
 
     }
 
