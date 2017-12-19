@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
 import garyapps.fyte.Enums.FyteCellType;
+import garyapps.fyte.Models.FyteRowModel;
 import garyapps.fyte.R;
 import garyapps.fyte.Views.Home.HomeProfileView;
-import garyapps.fyte.Models.FyteTableRowModel;
+import garyapps.fyte.Models.FyteProfileRowModel;
 
 /**
  * Created by Garrett on 12/14/2017.
@@ -40,9 +41,9 @@ public class HomeViewController extends ViewController {
     }
 
     private void createInfoCells(){
-        ArrayList<FyteTableRowModel> cells = new ArrayList<FyteTableRowModel>();
-        cells.add(new FyteTableRowModel("Default Acknowledgement", "", FyteCellType.Acknowledge));
-        cells.add(new FyteTableRowModel("Alert Cell", "", FyteCellType.Alert));
+        ArrayList<FyteRowModel> cells = new ArrayList<FyteRowModel>();
+        cells.add(new FyteProfileRowModel("Default Acknowledgement", "", FyteCellType.Acknowledge));
+        cells.add(new FyteProfileRowModel("Alert Cell", "", FyteCellType.Alert));
 
         FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells);
 

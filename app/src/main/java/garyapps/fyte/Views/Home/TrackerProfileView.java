@@ -15,10 +15,6 @@ import garyapps.fyte.Utilities.Shared;
 
 public class TrackerProfileView extends RelativeLayout{
 
-    private TextView sessionCounter;
-    private TextView sessionLabel;
-    private TextView streakCounter;
-    private TextView streakLabel;
     private TextView userName;
 
     public TrackerProfileView(Activity context) {
@@ -39,7 +35,6 @@ public class TrackerProfileView extends RelativeLayout{
 
     private void bindValues(){
         this.userName.setText(Shared.appUser.getFullName());
-
     }
 
 }

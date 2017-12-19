@@ -7,7 +7,8 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
-import garyapps.fyte.Models.FyteTableRowModel;
+import garyapps.fyte.Models.FyteProfileRowModel;
+import garyapps.fyte.Models.FyteRowModel;
 
 /**
  * Created by garrettemrick on 12/18/17.
@@ -16,8 +17,8 @@ import garyapps.fyte.Models.FyteTableRowModel;
 public class DisciplineCell extends FyteInfoCell {
 
 
-    public DisciplineCell(Activity context, FyteTableRowModel model) {
-        super(context, model);
+    public DisciplineCell(Activity context, FyteRowModel model) {
+        super(context, ((FyteProfileRowModel) model));
 
         createCell();
     }

@@ -12,21 +12,28 @@ import java.util.ArrayList;
 import garyapps.fyte.Models.Cells.AcknowledgementCell;
 import garyapps.fyte.Models.Cells.AlertCell;
 import garyapps.fyte.Models.Cells.DisciplineCell;
+import garyapps.fyte.Models.Cells.FyteCell;
 import garyapps.fyte.Models.Cells.FyteInfoCell;
-import garyapps.fyte.Models.FyteTableRowModel;
-import garyapps.fyte.R;
+import garyapps.fyte.Models.Cells.TrackerUpdateCell;
+import garyapps.fyte.Models.FyteProfileRowModel;
+import garyapps.fyte.Models.FyteRowModel;
+
+import static garyapps.fyte.Enums.FyteCellType.Acknowledge;
+import static garyapps.fyte.Enums.FyteCellType.Alert;
+import static garyapps.fyte.Enums.FyteCellType.Default;
+import static garyapps.fyte.Enums.FyteCellType.Discipline;
 
 /**
  * Created by garrettemrick on 12/17/17.
  */
 
 
-public class FyteTableRowAdapter extends ArrayAdapter<FyteTableRowModel> implements AdapterView.OnItemClickListener {
+public class FyteTableRowAdapter extends ArrayAdapter<FyteRowModel> implements AdapterView.OnItemClickListener {
     private final Context context;
-    private final ArrayList<FyteTableRowModel> data;
-    private final ArrayList<FyteInfoCell> cells = new ArrayList<FyteInfoCell>();
+    private final ArrayList<FyteRowModel> data;
+    private final ArrayList<FyteCell> cells = new ArrayList<FyteCell>();
 
-    public FyteTableRowAdapter(Activity context, ArrayList<FyteTableRowModel> data) {
+    public FyteTableRowAdapter(Activity context, ArrayList<FyteRowModel> data) {
         super(context, -1, data);
         this.context = context;
         this.data = data;
@@ -40,7 +47,7 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteTableRowModel> impleme
         return cells.get(position).getView();
     }
 
-    private FyteInfoCell createCell(Activity context, FyteTableRowModel model){
+    private FyteCell createCell(Activity context, FyteRowModel model){
         switch(model.type){
             case Acknowledge:
                 return new AcknowledgementCell(context, model);
@@ -48,6 +55,8 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteTableRowModel> impleme
                 return new AlertCell(context, model);
             case Discipline:
                 return new DisciplineCell(context, model);
+            case Tracker:
+                return new TrackerUpdateCell(context, model);
             case Default:
                 return new FyteInfoCell(context, model);
 

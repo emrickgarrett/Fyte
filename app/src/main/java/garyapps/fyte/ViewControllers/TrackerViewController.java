@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
 import garyapps.fyte.Enums.FyteCellType;
-import garyapps.fyte.Models.FyteTableRowModel;
+import garyapps.fyte.Models.FyteProfileRowModel;
+import garyapps.fyte.Models.FyteRowModel;
+import garyapps.fyte.Models.FyteTrackerRowModel;
 import garyapps.fyte.R;
 import garyapps.fyte.Views.Home.TrackerProfileView;
 
@@ -35,9 +37,9 @@ public class TrackerViewController extends ViewController {
     }
 
     private void createTrackerCells(){
-        ArrayList<FyteTableRowModel> cells = new ArrayList<FyteTableRowModel>();
-        cells.add(new FyteTableRowModel("BJJ", "", FyteCellType.Discipline));
-        cells.add(new FyteTableRowModel("Wrestling", "", FyteCellType.Discipline));
+        ArrayList<FyteRowModel> cells = new ArrayList<FyteRowModel>();
+        cells.add(new FyteTrackerRowModel("BJJ", "Blue", -1, FyteCellType.Tracker));
+        cells.add(new FyteTrackerRowModel("Wrestling", "Experienced", -1, FyteCellType.Tracker));
 
         FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells);
 

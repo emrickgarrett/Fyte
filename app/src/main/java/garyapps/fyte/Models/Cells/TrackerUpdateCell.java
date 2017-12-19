@@ -4,29 +4,31 @@ import android.app.Activity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
-import garyapps.fyte.Models.FyteProfileRowModel;
 import garyapps.fyte.Models.FyteRowModel;
+import garyapps.fyte.Models.FyteTrackerRowModel;
+import garyapps.fyte.R;
 
 /**
- * Created by garrettemrick on 12/18/17.
+ * Created by garrettemrick on 12/19/17.
  */
 
-public class AlertCell extends FyteInfoCell {
+public class TrackerUpdateCell extends FyteCell{
 
-    public AlertCell(Activity context, FyteRowModel model) {
-        super(context, ((FyteProfileRowModel) model));
+    private FyteTrackerRowModel model;
 
-        createAlert();
+    public TrackerUpdateCell(Activity context, FyteRowModel model){
+        bindViews(context.getLayoutInflater().inflate(R.layout.home_info_cell, null), ((FyteTrackerRowModel) model));
     }
 
-    private void createAlert(){
-        this.cellTitle.setText("Default Alert");
-        this.cellDesc.setText("This will be a simple alert that the user clicks to take an action");
-        this.cellImage.setImageResource(android.R.drawable.ic_dialog_alert);
-        this.cellActionImage.setImageResource(android.R.drawable.ic_menu_edit);
+    private void bindViews(View v){
+        this.view = v;
+    }
+
+    private void bindViews(View v, FyteTrackerRowModel model) {
+        this.bindViews(v);
+        this.model = model;
     }
 
     @Override
@@ -41,7 +43,6 @@ public class AlertCell extends FyteInfoCell {
             @Override
             public void onAnimationEnd(Animation animation) {
                 adapter.removeCell(position);
-                takeAction();
 
             }
 
@@ -54,7 +55,6 @@ public class AlertCell extends FyteInfoCell {
         view.startAnimation(anim);
     }
 
-    protected void takeAction(){
-        Toast.makeText(view.getContext(), "Example Action", Toast.LENGTH_SHORT).show();
-    }
+    @Override
+    public FyteRowModel getModel(){ return model; }
 }

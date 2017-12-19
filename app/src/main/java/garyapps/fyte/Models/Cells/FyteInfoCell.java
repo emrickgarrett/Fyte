@@ -1,7 +1,6 @@
 package garyapps.fyte.Models.Cells;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.animation.Animation;
@@ -11,27 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
-import garyapps.fyte.Models.FyteTableRowModel;
+import garyapps.fyte.Models.FyteProfileRowModel;
+import garyapps.fyte.Models.FyteRowModel;
 import garyapps.fyte.R;
 
 /**
  * Created by garrettemrick on 12/17/17.
  */
 
-public class FyteInfoCell {
+public class FyteInfoCell extends FyteCell{
 
     protected ImageView cellImage;
     protected TextView cellTitle;
     protected TextView cellDesc;
     protected ImageView cellActionImage;
-    protected View view;
-    protected FyteTableRowModel model;
+    protected FyteProfileRowModel model;
 
-    public FyteInfoCell(Activity context, FyteTableRowModel model){
-        bindViews(context.getLayoutInflater().inflate(R.layout.home_info_cell, null), model);
+    public FyteInfoCell(Activity context, FyteRowModel model){
+        bindViews(context.getLayoutInflater().inflate(R.layout.home_info_cell, null),((FyteProfileRowModel) model));
     }
-
-    public View getView(){ return view; }
 
     private void bindViews(View v){
         this.view = v;
@@ -41,7 +38,7 @@ public class FyteInfoCell {
         cellActionImage = v.findViewById(R.id.home_info_cell_action_image);
     }
 
-    private void bindViews(View v, FyteTableRowModel model) {
+    private void bindViews(View v, FyteProfileRowModel model) {
         this.bindViews(v);
         this.model = model;
 
@@ -59,6 +56,7 @@ public class FyteInfoCell {
         }
     }
 
+    @Override
     public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
         Animation anim = slideOutRightAnimation();
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -82,23 +80,8 @@ public class FyteInfoCell {
         view.startAnimation(anim);
     }
 
-    protected Animation slideOutRightAnimation(){
-        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_out_right);
-    }
-
-    protected Animation slideInRighttAnimation(){
-        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_in_right);
-    }
-
-    protected Animation slideOutLeftAnimation(){
-        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_out_left);
-    }
-
-    protected Animation slideInLeftAnimation(){
-        return AnimationUtils.loadAnimation(view.getContext(), R.anim.anim_slide_in_left);
-    }
-
-    public FyteTableRowModel getModel(){
+    @Override
+    public FyteRowModel getModel(){
         return model;
     }
 }

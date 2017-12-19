@@ -8,5 +8,6 @@ public enum FyteCellType {
     Alert,
     Acknowledge,
     Discipline,
+    Tracker,
     Default
 }
