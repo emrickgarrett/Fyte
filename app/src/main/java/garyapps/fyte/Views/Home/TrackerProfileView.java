@@ -35,10 +35,6 @@ public class TrackerProfileView extends RelativeLayout{
 
     private void bindView(View v){
         this.userName = v.findViewById(R.id.tracker_profile_full_name);
-        this.sessionCounter = v.findViewById(R.id.tracker_profile_totalTrainingSessionsNumber);
-        this.sessionLabel = v.findViewById(R.id.tracker_profile_totalTrainingSessionsLabel);
-        this.streakCounter = v.findViewById(R.id.tracker_profile_currentDayStreakNumber);
-        this.streakLabel = v.findViewById(R.id.tracker_profile_currentDayStreakDays);
     }
 
     private void bindValues(){
