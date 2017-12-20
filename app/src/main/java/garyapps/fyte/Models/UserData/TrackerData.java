@@ -2,7 +2,7 @@ package garyapps.fyte.Models.UserData;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by garrettemrick on 12/20/17.
@@ -11,11 +11,11 @@ import org.json.JSONArray;
 public class TrackerData {
 
     @SerializedName("json")
-    private JSONArray jsonData;
+    private JSONObject jsonData;
 
-    public TrackerData(JSONArray json){
+    public TrackerData(JSONObject json){
         this.jsonData = json;
     }
 
-    public JSONArray getJson(){ return jsonData; }
+    public JSONObject getJson(){ return jsonData; }
 }

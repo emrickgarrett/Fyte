@@ -71,7 +71,8 @@ public class Mocks {
 
     //Not accurate, just assumes each month has 28 days (4 weeks) and populates it.
     public static TrackerData getTrackerData(){
-        JSONArray arr = new JSONArray();
+        JSONObject obj = new JSONObject();
+        JSONArray yearArr = new JSONArray();
         JSONObject year = new JSONObject();
         int yearSessionCount = 0;
         JSONArray monthArr = new JSONArray();
@@ -120,13 +121,14 @@ public class Mocks {
             year.put("sessionCount", yearSessionCount);
             year.put("year", 2017);
             year.put("months", monthArr);
-            arr.put(yearSessionCount); // reuse year since we only do one
-            arr.put(year);
+            yearArr.put(year);
+            obj.put("sessionCount", yearSessionCount); // reuse year since we only do one
+            obj.put("years", yearArr);
         }catch(Exception e){
             Log.e("Mocks", "Error creating Tracker Data");
             System.err.print(e);
         }
 
-        return new TrackerData(arr);
+        return new TrackerData(obj);
     }
 }
