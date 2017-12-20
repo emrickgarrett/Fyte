@@ -118,6 +118,7 @@ public class Mocks {
         }
         try{
             year.put("sessionCount", yearSessionCount);
+            year.put("year", 2017);
             year.put("months", monthArr);
             arr.put(yearSessionCount); // reuse year since we only do one
             arr.put(year);

@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
 
@@ -30,10 +31,6 @@ public class FyteCalendarData implements Serializable {
     public FyteCalendarData(int sessionCounter, Hashtable<Integer, Year> yearlyData){
         this.sessionCounter = sessionCounter;
         this.yearlyData = yearlyData;
-    }
-
-    public FyteCalendarData(JSONArray arr){
-        throw new NotImplementedException();
     }
 
     public int getTotalSessions(){
@@ -64,7 +61,7 @@ public class FyteCalendarData implements Serializable {
         return yearlyData.get(year).getMonth(month).getWeek(week);
     }
 
-    public Day[] getCurrentWeek(){
+    public ArrayList<Day> getCurrentWeek(){
         return getWeekDataForYear(Calendar.YEAR, Calendar.MONTH, Calendar.WEEK_OF_MONTH).getDays();
     }
 
@@ -76,6 +73,18 @@ public class FyteCalendarData implements Serializable {
 
     private void loadJson(JSONArray json){
         //Now load the data!
+
+        //Need to load it as if it was an array
+        for(int i = 0; i < json.length(); i++){
+            try {
+                this.sessionCounter = json.getInt(i);
+                Year year = new Year(json.getJSONObject(i+1));
+                yearlyData.put(year.getYear(), year);
+            }catch(Exception e){
+                e.printStackTrace();
+                Shared.logError("FyteCalendarData", e.getStackTrace());
+            }
+        }
         Shared.logError("FyteCalendar", json);
     }
 
@@ -94,51 +103,70 @@ class Day implements Serializable{
         this.longName = DateHelper.parseLongDayName(day);
     }
 
-    public Day(JSONObject obj){
-        loadJSONObj(obj);
+    public Day(int day, JSONObject obj){
+        loadJSONObj(day, obj);
     }
 
-    private void loadJSONObj(JSONObject obj){
-        throw new NotImplementedException();
+    private void loadJSONObj(int day,JSONObject obj){
+        try{
+            this.sessionCounter = obj.getInt("sessionCount");
+            this.day = day;
+            this.longName = DateHelper.parseLongDayName(day);
+            this.shortName = DateHelper.parseShortDayName(day);
+        }catch(Exception e){
+            e.printStackTrace();
+            Shared.logError("FyteCalendarData", e.getStackTrace());
+        }
     }
 }
 
 class Week implements Serializable{
-    private Day[] days;
+    private ArrayList<Day> days = new ArrayList<Day>();
     public int sessionCounter;
 
-    public Week(Day[] days, int sessionCounter){
+    public Week(ArrayList<Day> days, int sessionCounter){
         this.days = days;
         this.sessionCounter = sessionCounter;
     }
 
-    public Week(JSONArray arr){
-        loadJson(arr);
+    public Week(JSONObject obj){
+        loadJson(obj);
     }
 
-    private void loadJson(JSONArray arr){
-        throw new NotImplementedException();
+    private void loadJson(JSONObject obj){
+        try{
+            this.sessionCounter = obj.getInt("sessionCount");
+            JSONArray dayArr = obj.getJSONArray("days");
+
+            for(int i = 0; i < dayArr.length(); i++){
+                Day day = new Day(i, dayArr.getJSONObject(i));
+                this.days.add(i, day);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            Shared.logError("FyteCalendarData", e.getStackTrace());
+        }
     }
 
     public Day getDay(int day){
-        return days[day];
+        return days.get(day);
     }
 
-    public Day[] getDays(){
+    public ArrayList<Day> getDays(){
         return days;
     }
 }
 
 class Month implements Serializable{
 
-    private Week[] weeks;
+    private ArrayList<Week> weeks = new ArrayList<Week>();
     public int sessionCounter;
     public int month;
     public String monthShortName;
     public String monthLongName;
 
     public Month(int month){
-        this.month = month;
+        this(month, 0);
     }
 
     public Month(int month, int sessionCounter){
@@ -148,25 +176,36 @@ class Month implements Serializable{
         this.monthLongName = DateHelper.parseMonthLongNameFromInt(month);
     }
 
-    public Month(JSONArray arr){
-        loadJson(arr);
+    public Month(int month, JSONObject obj){
+        loadJson(month, obj);
     }
 
-    private void loadJson(JSONArray arr){
-        throw new NotImplementedException();
+    private void loadJson(int month, JSONObject obj){
+        try{
+            this.sessionCounter = obj.getInt("sessionCount");
+            JSONArray dayArr = obj.getJSONArray("weeks");
+
+            for(int i = 0; i < dayArr.length(); i++){
+                Week week = new Week(dayArr.getJSONObject(i));
+
+                this.weeks.add(i, week);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            Shared.logError("FyteCalendarData", e.getStackTrace());
+        }
+
     }
 
     public Week getWeek(int week){
-        if(week < weeks.length){
-            return weeks[week];
-        }
-        return null;
+        return weeks.get(week);
     }
 }
 
 class Year implements Serializable{
     private Month[] months = new Month[12];
     public int sessionCounter = 0;
+    private int year;
 
     public Year(){
 
@@ -177,16 +216,31 @@ class Year implements Serializable{
         this.sessionCounter = sessionCounter;
     }
 
-    public Year(JSONArray arr){
-        loadJson(arr);
+    public Year(JSONObject obj){
+        loadJson(obj);
     }
 
-    private void loadJson(JSONArray arr){
-        throw new NotImplementedException();
+    private void loadJson(JSONObject obj){
+        try{
+            this.year = obj.getInt("year");
+            this.sessionCounter = obj.getInt("sessionCount");
+            JSONArray arr = obj.getJSONArray("months");
+            for(int i = 0; i < arr.length(); i++){
+                Month month = new Month(i, arr.getJSONObject(i));
+                this.months[i] = month;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            Shared.logError("FyteCalendarData", e.getStackTrace());
+        }
     }
 
     public Month getMonth(int num){
         return months[num];
+    }
+
+    public int getYear(){
+        return year;
     }
 
     public Month getMonth(String month){
