@@ -113,7 +113,7 @@ public class DateHelper{
     }
 
     public static String getCurrentDateFormatted(){
-        return parseShortDayName(Calendar.getInstance().get(Calendar.DAY_OF_WEEK-1)) + ", "
+        return parseShortDayName(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-1) + ", "
                 + parseMonthLongNameFromInt(Calendar.getInstance().get(Calendar.MONTH)) + " " +
                 Calendar.getInstance().get(Calendar.YEAR);
     }
