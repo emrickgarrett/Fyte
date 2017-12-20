@@ -34,6 +34,7 @@ public class AlertCell extends FyteInfoCell {
         if(animating) return;
 
         Animation anim = slideOutRightAnimation();
+        final FyteCell cell = this;
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -42,7 +43,7 @@ public class AlertCell extends FyteInfoCell {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                adapter.removeCell(position);
+                adapter.removeCell(cell);
                 takeAction();
 
             }

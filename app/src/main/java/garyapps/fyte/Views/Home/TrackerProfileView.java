@@ -6,7 +6,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 import garyapps.fyte.R;
+import garyapps.fyte.Utilities.DateHelper;
 import garyapps.fyte.Utilities.Shared;
 
 /**
@@ -16,6 +19,9 @@ import garyapps.fyte.Utilities.Shared;
 public class TrackerProfileView extends RelativeLayout{
 
     private TextView userName;
+    private TextView record;
+    private TextView date;
+    private TextView weight;
 
     public TrackerProfileView(Activity context) {
         super(context);
@@ -31,10 +37,17 @@ public class TrackerProfileView extends RelativeLayout{
 
     private void bindView(View v){
         this.userName = v.findViewById(R.id.tracker_profile_full_name);
+        this.record = v.findViewById(R.id.tracker_profile_record);
+        this.date = v.findViewById(R.id.tracker_profile_date);
+        this.weight = v.findViewById(R.id.tracker_profile_weight);
     }
 
     private void bindValues(){
         this.userName.setText(Shared.appUser.getFullName());
+        this.record.setText(""); //TODO after initial release
+        this.date.setText(DateHelper.getCurrentDateFormatted());
+        this.weight.setText("180 lbs");//TODO create fitness object to hold basic fitness data
+
     }
 
 }

@@ -14,6 +14,38 @@
         android:fontFamily="sans-serif"
         android:textColor="@color/colorAccent"/>
 
+    <TextView
+        android:id="@+id/tracker_profile_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint='Wed, June 2017'
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:textColor='@color/colorPrimaryDark'
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:id="@+id/tracker_profile_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="180 lbs"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/tracker_profile_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tracker_profile_full_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimaryDark"/>
+
     <View
         android:id="@+id/tracker_profile_separator_view"
         android:layout_height="1dp"
