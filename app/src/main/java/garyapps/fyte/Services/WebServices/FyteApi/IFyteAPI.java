@@ -1,9 +1,12 @@
 package garyapps.fyte.Services.WebServices.FyteApi;
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 import garyapps.fyte.Models.FightStyles.FightStyle;
 import garyapps.fyte.Models.Gym;
+import garyapps.fyte.Models.UserData.TrackerData;
 import garyapps.fyte.Models.UserData.User;
 import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 
@@ -19,4 +22,5 @@ public interface IFyteAPI {
     public Result<Gym> getGym(int id);
     public Result<List<FightStyle>> getFightingStyles();
     public Result<User> loginUser(String username, String password);
+    public Result<TrackerData> fetchUserTrackerData(int id);
 }

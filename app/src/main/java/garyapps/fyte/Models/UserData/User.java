@@ -93,4 +93,6 @@ public class User {
         return trainingData.getDayStreak();
     }
 
+    public int getId(){ return this.id; }
+
 }

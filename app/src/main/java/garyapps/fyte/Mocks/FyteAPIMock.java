@@ -1,9 +1,12 @@
 package garyapps.fyte.Mocks;
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 import garyapps.fyte.Models.FightStyles.FightStyle;
 import garyapps.fyte.Models.Gym;
+import garyapps.fyte.Models.UserData.TrackerData;
 import garyapps.fyte.Models.UserData.User;
 import garyapps.fyte.Services.WebServices.FyteApi.IFyteAPI;
 import garyapps.fyte.Services.WebServices.ResultObjects.Result;
@@ -55,5 +58,10 @@ public class FyteAPIMock implements IFyteAPI {
         }
 
         return new Result<User>("", false, Mocks.getUser());
+    }
+
+    @Override
+    public Result<TrackerData> fetchUserTrackerData(int id){
+        return new Result<TrackerData>("", false, Mocks.getTrackerData());
     }
 }

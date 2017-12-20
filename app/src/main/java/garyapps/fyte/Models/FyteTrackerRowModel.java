@@ -10,6 +10,7 @@ public class FyteTrackerRowModel extends FyteRowModel{
 
     public String discipline;
     public String experienceLevel;
+
     public int disciplineId;
 
     public FyteTrackerRowModel(String discipline, String experienceLevel, int disciplineId, FyteCellType type){

@@ -1,9 +1,12 @@
 package garyapps.fyte.Services.WebServices.FyteApi;
 
+import org.json.JSONArray;
+
 import java.util.List;
 
 import garyapps.fyte.Models.FightStyles.FightStyle;
 import garyapps.fyte.Models.Gym;
+import garyapps.fyte.Models.UserData.TrackerData;
 import garyapps.fyte.Models.UserData.User;
 import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 import retrofit2.Call;
@@ -36,6 +39,9 @@ public interface FyteAPIEndpointInterface {
 
     @GET("fightstyles")
     Call<Result<List<FightStyle>>> getFightingStyles();
+
+    @GET("users/{id}")
+    Call<Result<TrackerData>> fetchUserTrackerData(@Path("id") int id);
 
     @POST("users/new")
     Call<Result<User>> createUser(@Body User user);
