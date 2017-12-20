@@ -58,11 +58,12 @@ public class FyteInfoCell extends FyteCell{
 
     @Override
     public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
+        if(animating) return;
         Animation anim = slideOutRightAnimation();
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-
+                animating = true;
             }
 
             @Override

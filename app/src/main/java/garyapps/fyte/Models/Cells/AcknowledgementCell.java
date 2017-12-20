@@ -28,27 +28,4 @@ public class AcknowledgementCell extends FyteInfoCell {
         this.cellActionImage.setImageResource(android.R.drawable.btn_star);
     }
 
-    @Override
-    public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
-        Animation anim = slideOutRightAnimation();
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                adapter.removeCell(position);
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        view.startAnimation(anim);
-    }
 }

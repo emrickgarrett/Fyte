@@ -65,6 +65,7 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteRowModel> implements A
     }
 
     //TODO, currently there is a bug where if you click another cell before one disappears, you get crash
+    //Idea: Switch to Dictionary or some static view where their key doesn't change
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         cells.get(position).onClick(this, parent, view, position, id);

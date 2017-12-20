@@ -16,6 +16,7 @@ import garyapps.fyte.R;
 
 public abstract class FyteCell {
     protected View view;
+    protected boolean animating = false;
 
     public View getView(){
         return view;

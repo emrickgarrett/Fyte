@@ -73,22 +73,20 @@ public class FyteCalendarData implements Serializable {
 
     private void loadJson(JSONObject json){
         //Now load the data!
+         try {
+            this.sessionCounter = json.getInt("sessionCount");
+            JSONArray yearArr = json.getJSONArray("years");
 
-        //Need to load it as if it was an array
-            try {
-                this.sessionCounter = json.getInt("sessionCount");
-                JSONArray yearArr = json.getJSONArray("years");
+            for(int i = 0; i < yearArr.length(); i++){
 
-                for(int i = 0; i < yearArr.length(); i++){
-
-                    Year year = new Year(yearArr.getJSONObject(i));
-                    yearlyData.put(year.getYear(), year);
-                }
-
-            }catch(Exception e){
-                e.printStackTrace();
-                Shared.logError("FyteCalendarData", e.getStackTrace());
+                Year year = new Year(yearArr.getJSONObject(i));
+                yearlyData.put(year.getYear(), year);
             }
+
+        }catch(Exception e){
+            e.printStackTrace();
+            Shared.logError("FyteCalendarData", e.getStackTrace());
+        }
     }
 
 }
