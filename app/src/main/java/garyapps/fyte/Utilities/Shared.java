@@ -47,6 +47,22 @@ public class Shared {
         Log.v(className, s);
     }
 
+    public static void logError(String className, Object o){
+        Log.e(className, o.toString());
+    }
+
+    public static void logError(String className, String s){
+        Log.e(className, s);
+    }
+
+    public static void logDebug(String className, Object o){
+        Log.d(className, o.toString());
+    }
+
+    public static void logDebug(String className, String s){
+        Log.d(className, s);
+    }
+
     public static User appUser;
     public static IFyteAPI fyteAPI;
     public static BuildType Environment;

@@ -75,7 +75,7 @@ public class FyteCalendarData implements Serializable {
     }
 
     private void loadJson(JSONArray json){
-        Shared.log("FyteCalendar", json);
+        Shared.logError("FyteCalendar", json);
     }
 
 }
