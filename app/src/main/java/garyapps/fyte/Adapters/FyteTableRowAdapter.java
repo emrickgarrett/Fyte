@@ -64,6 +64,7 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteRowModel> implements A
         return null;
     }
 
+    //TODO, currently there is a bug where if you click another cell before one disappears, you get crash
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         cells.get(position).onClick(this, parent, view, position, id);
