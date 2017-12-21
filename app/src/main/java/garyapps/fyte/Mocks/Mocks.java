@@ -27,6 +27,7 @@ public class Mocks {
     public static List<FightStyle> getFightingStyles(){
         List<FightStyle> list = new ArrayList<FightStyle>();
         list.add(new FightStyle("BJJ", Mocks.getMoves()));
+        list.add(new FightStyle("Wrestling", Mocks.getMoves()));
 
         return list;
     }

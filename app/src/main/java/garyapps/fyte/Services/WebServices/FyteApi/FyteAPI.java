@@ -178,6 +178,23 @@ public class FyteAPI implements IFyteAPI{
         return null;
     }
 
+    @Override
+    public Result<TrackerData> fetchUserDisciplineTrackerData(int id, int disciplineId){
+        Call<Result<TrackerData>> call = sharedAPI.fetchUserDisciplineTrackerData(id, disciplineId);
+        call.enqueue(new Callback<Result<TrackerData>>(){
+            @Override
+            public void onResponse(Call<Result<TrackerData>> call, Response<Result<TrackerData>> response){
+
+            }
+
+            @Override
+            public void onFailure(Call<Result<TrackerData>> call, Throwable t){
+                LogFyteFailure(t);
+            }
+        });
+        return null;
+    }
+
     private void LogFyteFailure(String msg, Throwable t){
         Log.e(FyteAPI.TAG, msg, t);
     }

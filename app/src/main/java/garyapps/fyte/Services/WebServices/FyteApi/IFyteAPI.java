@@ -23,4 +23,5 @@ public interface IFyteAPI {
     public Result<List<FightStyle>> getFightingStyles();
     public Result<User> loginUser(String username, String password);
     public Result<TrackerData> fetchUserTrackerData(int id);
+    public Result<TrackerData> fetchUserDisciplineTrackerData(int userId, int disciplineId);
 }

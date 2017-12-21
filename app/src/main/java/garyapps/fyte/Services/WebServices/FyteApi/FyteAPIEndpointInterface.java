@@ -43,11 +43,13 @@ public interface FyteAPIEndpointInterface {
     @GET("users/{id}")
     Call<Result<TrackerData>> fetchUserTrackerData(@Path("id") int id);
 
+    @GET("users/disciplinetracker")
+    Call<Result<TrackerData>> fetchUserDisciplineTrackerData(@Query("id") int id, @Query("disciplineId") int disciplineId);
+
     @POST("users/new")
     Call<Result<User>> createUser(@Body User user);
 
     @FormUrlEncoded
     @POST("login")
     Call<Result<User>> login(@Field("username") String name, @Field("password") String password);
-
 }

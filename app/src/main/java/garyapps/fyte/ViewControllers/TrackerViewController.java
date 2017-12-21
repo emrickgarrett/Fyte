@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
 import garyapps.fyte.Enums.FyteCellType;
-import garyapps.fyte.Models.FyteCalendarData;
-import garyapps.fyte.Models.FyteProfileRowModel;
+import garyapps.fyte.Models.CalendarData.FyteCalendarData;
 import garyapps.fyte.Models.FyteRowModel;
 import garyapps.fyte.Models.FyteTrackerRowModel;
 import garyapps.fyte.R;
@@ -50,7 +49,7 @@ public class TrackerViewController extends ViewController {
 
         //simulate getting tracker information for now
         FyteCalendarData trackerData = new FyteCalendarData();
-        trackerData.fetchData(Shared.fyteAPI);
+        trackerData.fetchData(Shared.appUser.getId());
     }
 
     @Override

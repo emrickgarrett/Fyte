@@ -1,7 +1,6 @@
-package garyapps.fyte.Models;
+package garyapps.fyte.Models.CalendarData;
 
 
-import org.apache.commons.lang.NotImplementedException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,7 +10,6 @@ import java.util.Calendar;
 import java.util.Hashtable;
 
 import garyapps.fyte.Models.UserData.TrackerData;
-import garyapps.fyte.Services.WebServices.FyteApi.IFyteAPI;
 import garyapps.fyte.Services.WebServices.ResultObjects.Result;
 import garyapps.fyte.Utilities.DateHelper;
 import garyapps.fyte.Utilities.Shared;
@@ -21,33 +19,33 @@ import garyapps.fyte.Utilities.Shared;
  */
 
 public class FyteCalendarData implements Serializable {
-    private int sessionCounter;
+    private int sessionCount;
     private Hashtable<Integer, Year> yearlyData;
 
     public FyteCalendarData(){
-        this.sessionCounter = 0;
+        this.sessionCount = 0;
         this.yearlyData = new Hashtable<Integer, Year>();
     }
 
-    public FyteCalendarData(int sessionCounter, Hashtable<Integer, Year> yearlyData){
-        this.sessionCounter = sessionCounter;
+    public FyteCalendarData(int sessionCount, Hashtable<Integer, Year> yearlyData){
+        this.sessionCount = sessionCount;
         this.yearlyData = yearlyData;
     }
 
     public int getTotalSessions(){
-        return sessionCounter;
+        return sessionCount;
     }
 
     public int getYearlySessions(int year){
-        return yearlyData.get(year).sessionCounter;
+        return yearlyData.get(year).sessionCount;
     }
 
     public int getMonthSessionsForYear(int year, int month){
-        return yearlyData.get(year).getMonth(month).sessionCounter;
+        return yearlyData.get(year).getMonth(month).sessionCount;
     }
 
     public int getWeekSessionsForYear(int year, int month, int week){
-        return yearlyData.get(year).getMonth(month).getWeek(week).sessionCounter;
+        return yearlyData.get(year).getMonth(month).getWeek(week).sessionCount;
     }
 
     public Year getYearData(int year){
@@ -63,7 +61,9 @@ public class FyteCalendarData implements Serializable {
     }
 
     public ArrayList<Day> getCurrentWeek(){
-        return getWeekDataForYear(Calendar.YEAR, Calendar.MONTH, Calendar.WEEK_OF_MONTH).getDays();
+        return getWeekDataForYear(Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH)-1,
+                Calendar.getInstance().get(Calendar.WEEK_OF_MONTH)-1).getDays();
     }
 
     //TODO implement error handling on these fetch requests, also make them async
@@ -81,7 +81,7 @@ public class FyteCalendarData implements Serializable {
     private void loadJson(JSONObject json){
         //Now load the data!
          try {
-            this.sessionCounter = json.getInt("sessionCount");
+            this.sessionCount = json.getInt("sessionCount");
             JSONArray yearArr = json.getJSONArray("years");
 
             for(int i = 0; i < yearArr.length(); i++){
@@ -98,197 +98,3 @@ public class FyteCalendarData implements Serializable {
 
 }
 
-public class Day implements Serializable{
-    private int sessionCounter;
-    private int day;
-    private String shortName;
-    private String longName;
-
-    public Day(int day, int sessionCounter){
-        this.day = day;
-        this.sessionCounter = sessionCounter;
-        this.shortName = DateHelper.parseShortDayName(day);
-        this.longName = DateHelper.parseLongDayName(day);
-    }
-
-    public Day(int day, JSONObject obj){
-        loadJSONObj(day, obj);
-    }
-
-    private void loadJSONObj(int day,JSONObject obj){
-        try{
-            this.sessionCounter = obj.getInt("sessionCount");
-            this.day = day;
-            this.longName = DateHelper.parseLongDayName(day);
-            this.shortName = DateHelper.parseShortDayName(day);
-        }catch(Exception e){
-            e.printStackTrace();
-            Shared.logError("FyteCalendarData", e.getStackTrace());
-        }
-    }
-}
-
-public class Week implements Serializable{
-    private ArrayList<Day> days = new ArrayList<Day>();
-    public int sessionCounter;
-
-    public Week(ArrayList<Day> days, int sessionCounter){
-        this.days = days;
-        this.sessionCounter = sessionCounter;
-    }
-
-    public Week(JSONObject obj){
-        loadJson(obj);
-    }
-
-    private void loadJson(JSONObject obj){
-        try{
-            this.sessionCounter = obj.getInt("sessionCount");
-            JSONArray dayArr = obj.getJSONArray("days");
-
-            for(int i = 0; i < dayArr.length(); i++){
-                Day day = new Day(i, dayArr.getJSONObject(i));
-                this.days.add(i, day);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            Shared.logError("FyteCalendarData", e.getStackTrace());
-        }
-    }
-
-    public Day getDay(int day){
-        return days.get(day);
-    }
-
-    public ArrayList<Day> getDays(){
-        return days;
-    }
-}
-
-public class Month implements Serializable{
-
-    private ArrayList<Week> weeks = new ArrayList<Week>();
-    public int sessionCounter;
-    public int month;
-    public String monthShortName;
-    public String monthLongName;
-
-    public Month(int month){
-        this(month, 0);
-    }
-
-    public Month(int month, int sessionCounter){
-        this.month = month;
-        this.sessionCounter = sessionCounter;
-        this.monthShortName = DateHelper.parseMonthShortNameFromInt(month);
-        this.monthLongName = DateHelper.parseMonthLongNameFromInt(month);
-    }
-
-    public Month(int month, JSONObject obj){
-        loadJson(month, obj);
-    }
-
-    private void loadJson(int month, JSONObject obj){
-        try{
-            this.sessionCounter = obj.getInt("sessionCount");
-            JSONArray dayArr = obj.getJSONArray("weeks");
-
-            for(int i = 0; i < dayArr.length(); i++){
-                Week week = new Week(dayArr.getJSONObject(i));
-
-                this.weeks.add(i, week);
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            Shared.logError("FyteCalendarData", e.getStackTrace());
-        }
-
-    }
-
-    public Week getWeek(int week){
-        return weeks.get(week);
-    }
-}
-
-public class Year implements Serializable{
-    private Month[] months = new Month[12];
-    public int sessionCounter = 0;
-    private int year;
-
-    public Year(){
-
-    }
-
-    public Year(Month[] months, int sessionCounter){
-        this.months = months;
-        this.sessionCounter = sessionCounter;
-    }
-
-    public Year(JSONObject obj){
-        loadJson(obj);
-    }
-
-    private void loadJson(JSONObject obj){
-        try{
-            this.year = obj.getInt("year");
-            this.sessionCounter = obj.getInt("sessionCount");
-            JSONArray arr = obj.getJSONArray("months");
-            for(int i = 0; i < arr.length(); i++){
-                Month month = new Month(i, arr.getJSONObject(i));
-                this.months[i] = month;
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            Shared.logError("FyteCalendarData", e.getStackTrace());
-        }
-    }
-
-    public Month getMonth(int num){
-        return months[num];
-    }
-
-    public int getYear(){
-        return year;
-    }
-
-    public Month getMonth(String month){
-        switch(month.toLowerCase()){
-            case "jan":
-            case "january":
-                    return getMonth(0);
-            case "feb":
-            case "february":
-                return getMonth(1);
-            case "mar":
-            case "march":
-                return getMonth(2);
-            case "apr":
-            case "april":
-                return getMonth(3);
-            case "may":
-                return getMonth(4);
-            case "june":
-                return getMonth(5);
-            case "july":
-                return getMonth(6);
-            case "aug":
-            case "august":
-                return getMonth(7);
-            case "sep":
-            case "september":
-                return getMonth(8);
-            case "oct":
-            case "october":
-                return getMonth(9);
-            case "nov":
-            case "november":
-                return getMonth(10);
-            case "dec":
-            case "december":
-                return getMonth(11);
-            default:
-                return null;
-
-        }
-    }
-}
