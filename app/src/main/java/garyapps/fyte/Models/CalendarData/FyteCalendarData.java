@@ -66,9 +66,15 @@ public class FyteCalendarData implements Serializable {
         return getWeekDataForYear(Calendar.YEAR, Calendar.MONTH, Calendar.WEEK_OF_MONTH).getDays();
     }
 
-    public void fetchData(IFyteAPI api){
+    //TODO implement error handling on these fetch requests, also make them async
+    public void fetchData(int userId){
         //fetch data from api
-        final Result<TrackerData> result = api.fetchUserTrackerData(Shared.appUser.getId());
+        final Result<TrackerData> result = Shared.fyteAPI.fetchUserTrackerData(userId);
+        loadJson(result.getResultObject().getJson());
+    }
+
+    public void fetchData(int userId, int disciplineId){
+        final Result<TrackerData> result = Shared.fyteAPI.fetchUserDisciplineTrackerData(userId, disciplineId);
         loadJson(result.getResultObject().getJson());
     }
 
@@ -92,7 +98,7 @@ public class FyteCalendarData implements Serializable {
 
 }
 
-class Day implements Serializable{
+public class Day implements Serializable{
     private int sessionCounter;
     private int day;
     private String shortName;
@@ -122,7 +128,7 @@ class Day implements Serializable{
     }
 }
 
-class Week implements Serializable{
+public class Week implements Serializable{
     private ArrayList<Day> days = new ArrayList<Day>();
     public int sessionCounter;
 
@@ -159,7 +165,7 @@ class Week implements Serializable{
     }
 }
 
-class Month implements Serializable{
+public class Month implements Serializable{
 
     private ArrayList<Week> weeks = new ArrayList<Week>();
     public int sessionCounter;
@@ -204,7 +210,7 @@ class Month implements Serializable{
     }
 }
 
-class Year implements Serializable{
+public class Year implements Serializable{
     private Month[] months = new Month[12];
     public int sessionCounter = 0;
     private int year;
