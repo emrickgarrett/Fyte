@@ -16,8 +16,8 @@ import garyapps.fyte.Models.FyteRowModel;
 public class DisciplineCell extends FyteInfoCell {
 
 
-    public DisciplineCell(FyteTableRowAdapter adapter, FyteRowModel model) {
-        super(adapter, ((FyteProfileRowModel) model));
+    public DisciplineCell(FyteTableRowAdapter adapter) {
+        super(adapter);
 
         createCell();
     }
@@ -30,7 +30,7 @@ public class DisciplineCell extends FyteInfoCell {
     }
 
     @Override
-    public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
+    public void onClick(final FyteTableRowAdapter adapter, final View view, final int position) {
         if(animating) return;
         Animation anim = slideOutRightAnimation();
         final FyteCell cell = this;

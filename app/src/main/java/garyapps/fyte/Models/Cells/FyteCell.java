@@ -23,7 +23,8 @@ public abstract class FyteCell {
     }
 
     public abstract FyteRowModel getModel();
-    public abstract void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id);
+    public abstract void bindViewModel(FyteRowModel model);
+    public abstract void onClick(final FyteTableRowAdapter adapter, final View view, final int position);
 
 
     protected Animation slideOutRightAnimation(){

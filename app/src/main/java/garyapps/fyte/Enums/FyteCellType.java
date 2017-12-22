@@ -5,9 +5,18 @@ package garyapps.fyte.Enums;
  */
 
 public enum FyteCellType {
-    Alert,
-    Acknowledge,
-    Discipline,
-    Tracker,
-    Default
+    Alert(0),
+    Acknowledge(1),
+    Discipline(2),
+    Tracker(3),
+    Default(4);
+
+    private final int value;
+    private FyteCellType(int value){
+        this.value = value;
+    }
+
+    public int getValue(){
+        return this.value;
+    }
 }

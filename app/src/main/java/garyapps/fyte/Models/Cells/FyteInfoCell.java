@@ -27,9 +27,9 @@ public class FyteInfoCell extends FyteCell{
     protected FyteProfileRowModel model;
     protected FyteTableRowAdapter adapter;
 
-    public FyteInfoCell(FyteTableRowAdapter adapter, FyteRowModel model){
+    public FyteInfoCell(FyteTableRowAdapter adapter){
         this.adapter = adapter;
-        bindViews(adapter.getLayoutInflater().inflate(R.layout.home_info_cell, null),((FyteProfileRowModel) model));
+        bindViews(adapter.getLayoutInflater().inflate(R.layout.home_info_cell, null));
     }
 
     private void bindViews(View v){
@@ -40,26 +40,25 @@ public class FyteInfoCell extends FyteCell{
         cellActionImage = v.findViewById(R.id.home_info_cell_action_image);
     }
 
-    private void bindViews(View v, FyteProfileRowModel model) {
-        this.bindViews(v);
-        this.model = model;
+    public void bindViewModel(FyteRowModel model) {
+        this.model = (FyteProfileRowModel) model;
 
-        if (model.imageId != -1) {
+        if (this.model.imageId != -1) {
             cellImage.setImageDrawable(Drawable.createFromPath(""));
         }
-        if (model.title != "") {
-            cellTitle.setText(model.title);
+        if (this.model.title != "") {
+            cellTitle.setText(this.model.title);
         }
-        if (model.desc != "") {
-            cellDesc.setText(model.desc);
+        if (this.model.desc != "") {
+            cellDesc.setText(this.model.desc);
         }
-        if(model.actionImageId != -1){
+        if(this.model.actionImageId != -1){
             cellActionImage.setImageDrawable(Drawable.createFromPath(""));
         }
     }
 
     @Override
-    public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
+    public void onClick(final FyteTableRowAdapter adapter, final View view, final int position) {
         if(animating) return;
 
         Animation anim = slideOutRightAnimation();

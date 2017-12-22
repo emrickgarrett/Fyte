@@ -10,8 +10,8 @@ import garyapps.fyte.Models.FyteRowModel;
 
 public class AcknowledgementCell extends FyteInfoCell {
 
-    public AcknowledgementCell(FyteTableRowAdapter adapter, FyteRowModel model){
-        super(adapter, ((FyteProfileRowModel) model));
+    public AcknowledgementCell(FyteTableRowAdapter adapter){
+        super(adapter);
 
         createDefaultAcknowledgement();
     }

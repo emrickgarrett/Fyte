@@ -49,12 +49,11 @@ public class TrackerUpdateCell extends FyteCell{
     private boolean isMinimized;
     private FyteTableRowAdapter adapter;
 
-    public TrackerUpdateCell(FyteTableRowAdapter adapter, FyteRowModel model, boolean isMinimized){
+    public TrackerUpdateCell(FyteTableRowAdapter adapter, boolean isMinimized){
         this.isMinimized = isMinimized;
         this.adapter = adapter;
 
-        bindViews(adapter.getLayoutInflater().inflate(R.layout.tracker_discipline_cell, null), ((FyteTrackerRowModel) model));
-        loadChart();
+        bindViews(adapter.getLayoutInflater().inflate(R.layout.tracker_discipline_cell, null));
         if(this.isMinimized){
             minimizeView();
         }else{
@@ -62,8 +61,8 @@ public class TrackerUpdateCell extends FyteCell{
         }
     }
 
-    public TrackerUpdateCell(FyteTableRowAdapter adapter, FyteRowModel model){
-        this(adapter, model, true);
+    public TrackerUpdateCell(FyteTableRowAdapter adapter){
+        this(adapter, true);
     }
 
     private void bindViews(View v){
@@ -76,15 +75,15 @@ public class TrackerUpdateCell extends FyteCell{
         this.chartDesc = v.findViewById(R.id.tracker_cell_tracker_desc);
     }
 
-    private void bindViews(View v, FyteTrackerRowModel model) {
-        this.bindViews(v);
-        this.model = model;
+    public void bindViewModel(FyteRowModel model) {
+        this.model = (FyteTrackerRowModel) model;
+        loadChart();
 
-        if(model.discipline != ""){
-            disciplineTitle.setText(model.discipline);
+        if(this.model.discipline != ""){
+            disciplineTitle.setText(this.model.discipline);
         }
 
-        if(model.experienceLevel != ""){
+        if(this.model.experienceLevel != ""){
             //do work
         }
 
@@ -189,7 +188,7 @@ public class TrackerUpdateCell extends FyteCell{
     }
 
     @Override
-    public void onClick(final FyteTableRowAdapter adapter, final AdapterView<?> parent, final View view, final int position, final long id) {
+    public void onClick(final FyteTableRowAdapter adapter, final View view, final int position) {
 
         //TODO send user to view of this discipline and other useful info
     }

@@ -1,6 +1,9 @@
 package garyapps.fyte.ViewControllers;
 
 import android.app.Activity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -22,17 +25,25 @@ import garyapps.fyte.Views.Home.TrackerProfileView;
 public class TrackerViewController extends ViewController {
 
     private LinearLayout trackerTable;
-    private ListView listView;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
 
     public TrackerViewController(Activity context){
         super(context);
 
         trackerTable = this.view.findViewById(R.id.tracker_linear_layout);
-        listView = new ListView(context);
+        recyclerView = new RecyclerView(context);
+        recyclerView.setVerticalScrollBarEnabled(true);
+        recyclerView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
+
 
         //Do Work
         trackerTable.addView(new TrackerProfileView(context));
-        trackerTable.addView(listView);
+        trackerTable.addView(recyclerView);
 
         createTrackerCells();
     }
@@ -43,10 +54,10 @@ public class TrackerViewController extends ViewController {
         cells.add(new FyteTrackerRowModel("Wrestling", "Experienced", -1, FyteCellType.Tracker));
         cells.add(new FyteTrackerRowModel("Kickboxing", "Beginner", -1, FyteCellType.Tracker));
 
-        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells, listView);
+        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells, recyclerView);
 
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(adapter);
+        recyclerView.setAdapter(adapter);
+        //recyclerView.setOnItemClickListener(adapter);
 
         //simulate getting tracker information for now
         FyteCalendarData trackerData = new FyteCalendarData();

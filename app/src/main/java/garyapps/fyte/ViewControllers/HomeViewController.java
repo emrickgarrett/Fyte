@@ -1,6 +1,9 @@
 package garyapps.fyte.ViewControllers;
 
 import android.app.Activity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -12,6 +15,7 @@ import garyapps.fyte.Models.FyteRowModel;
 import garyapps.fyte.R;
 import garyapps.fyte.Views.Home.HomeProfileView;
 import garyapps.fyte.Models.FyteProfileRowModel;
+import garyapps.fyte.Views.Home.TrackerProfileView;
 
 /**
  * Created by Garrett on 12/14/2017.
@@ -20,16 +24,24 @@ import garyapps.fyte.Models.FyteProfileRowModel;
 public class HomeViewController extends ViewController {
 
     private LinearLayout homeTable;
-    private ListView listView;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
 
     public HomeViewController(Activity context){
         super(context);
         homeTable = this.view.findViewById(R.id.home_linear_layout);
-        listView = new ListView(context);
+        recyclerView = new RecyclerView(context);
+        recyclerView.setVerticalScrollBarEnabled(true);
+        recyclerView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(layoutManager);
+
 
         //Do Work
         homeTable.addView(new HomeProfileView(context));
-        homeTable.addView(listView);
+        homeTable.addView(recyclerView);
 
         createInfoCells();
     }
@@ -45,9 +57,9 @@ public class HomeViewController extends ViewController {
         cells.add(new FyteProfileRowModel("Default Acknowledgement", "", FyteCellType.Acknowledge));
         cells.add(new FyteProfileRowModel("Alert Cell", "", FyteCellType.Alert));
 
-        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells, listView);
+        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells, recyclerView);
 
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(adapter);
+        recyclerView.setAdapter(adapter);
+        //recyclerView.setOnItemClickListener(adapter);
     }
 }
