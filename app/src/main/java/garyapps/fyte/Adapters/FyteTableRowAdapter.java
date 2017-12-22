@@ -103,6 +103,7 @@ public class FyteTableRowAdapter extends RecyclerView.Adapter<FyteTableRowAdapte
         private FyteCell cell;
         public ViewHolder(FyteCell cell) {
             super(cell.getView());
+            this.setIsRecyclable(true);
             this.cell = cell;
         }
 

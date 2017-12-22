@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/tracker_cell_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:animateLayoutChanges="true">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tracker_cell_discipline_title"
@@ -25,25 +24,40 @@
         android:layout_alignBaseline="@id/tracker_cell_discipline_title"
         android:text="Started on 2/07/17"/>
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/tracker_cell_discipline_week_session_tracker"
-        android:layout_height="150dp"
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:id="@+id/tracker_cell_expandable_layout"
         android:layout_width="match_parent"
-        android:layout_below="@id/tracker_cell_discipline_title"
-        android:layout_marginTop="10dp"
-        />
-    <TextView
-        android:id="@+id/tracker_cell_tracker_desc"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/tracker_cell_discipline_week_session_tracker"/>
+        android:layout_below="@id/tracker_cell_discipline_title"
+        app:el_duration="500"
+        app:el_expanded="false"
+        app:el_parallax="0.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/tracker_cell_discipline_week_session_tracker"
+                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:id="@+id/tracker_cell_tracker_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
 
     <ImageButton
         android:id="@+id/tracker_cell_size_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tracker_cell_tracker_desc"
+        android:layout_below="@id/tracker_cell_expandable_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/tracker_cell_size_button_desc"

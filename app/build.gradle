@@ -55,4 +55,7 @@ dependencies {
     //MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
+    //ExpandableLayout
+    compile 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+
 }

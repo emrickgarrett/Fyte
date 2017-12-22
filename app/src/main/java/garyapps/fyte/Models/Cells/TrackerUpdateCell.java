@@ -21,6 +21,8 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
+import net.cachapa.expandablelayout.ExpandableLayout;
+
 import java.util.ArrayList;
 
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
@@ -44,6 +46,7 @@ public class TrackerUpdateCell extends FyteCell{
     private ImageButton changeSizeButton;
     private BarChart weeklySessionTracker;
     private RelativeLayout layout;
+    private ExpandableLayout expandableLayout;
 
     private FyteTrackerRowModel model;
     private boolean isMinimized;
@@ -73,6 +76,7 @@ public class TrackerUpdateCell extends FyteCell{
         this.weeklySessionTracker = v.findViewById(R.id.tracker_cell_discipline_week_session_tracker);
         this.changeSizeButton = v.findViewById(R.id.tracker_cell_size_button);
         this.chartDesc = v.findViewById(R.id.tracker_cell_tracker_desc);
+        this.expandableLayout = v.findViewById(R.id.tracker_cell_expandable_layout);
     }
 
     public void bindViewModel(FyteRowModel model) {
@@ -96,30 +100,20 @@ public class TrackerUpdateCell extends FyteCell{
             }
         });
 
-        this.layout.getLayoutTransition().addTransitionListener(new LayoutTransition.TransitionListener() {
-            @Override
-            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-
-            }
-
-            @Override
-            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-                //adapter.refreshLayout();
-                refreshLayout();
-            }
-        });
-
     }
 
     public void maximizeView(){
-        this.weeklySessionTracker.setVisibility(View.VISIBLE);
-        this.chartDesc.setVisibility(View.VISIBLE);
+        //this.weeklySessionTracker.setVisibility(View.VISIBLE);
+        //this.chartDesc.setVisibility(View.VISIBLE);
+        //this.changeSizeButton.setImageDrawable();
         //refreshLayout();
+        expandableLayout.expand(true);
     }
 
     public void minimizeView(){
-        this.weeklySessionTracker.setVisibility(View.GONE);
-        this.chartDesc.setVisibility(View.GONE);
+        expandableLayout.collapse(true);
+        //this.weeklySessionTracker.setVisibility(View.GONE);
+        //this.chartDesc.setVisibility(View.GONE);
         //refreshLayout();
     }
 
