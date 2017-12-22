@@ -1,11 +1,12 @@
 package garyapps.fyte.Adapters;
 
 import android.app.Activity;
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -15,13 +16,7 @@ import garyapps.fyte.Models.Cells.DisciplineCell;
 import garyapps.fyte.Models.Cells.FyteCell;
 import garyapps.fyte.Models.Cells.FyteInfoCell;
 import garyapps.fyte.Models.Cells.TrackerUpdateCell;
-import garyapps.fyte.Models.FyteProfileRowModel;
 import garyapps.fyte.Models.FyteRowModel;
-
-import static garyapps.fyte.Enums.FyteCellType.Acknowledge;
-import static garyapps.fyte.Enums.FyteCellType.Alert;
-import static garyapps.fyte.Enums.FyteCellType.Default;
-import static garyapps.fyte.Enums.FyteCellType.Discipline;
 
 /**
  * Created by garrettemrick on 12/17/17.
@@ -29,12 +24,14 @@ import static garyapps.fyte.Enums.FyteCellType.Discipline;
 
 
 public class FyteTableRowAdapter extends ArrayAdapter<FyteRowModel> implements AdapterView.OnItemClickListener {
-    private final Context context;
+    private final Activity context;
     private final ArrayList<FyteRowModel> data;
     private final ArrayList<FyteCell> cells = new ArrayList<FyteCell>();
+    private final ListView listView;
 
-    public FyteTableRowAdapter(Activity context, ArrayList<FyteRowModel> data) {
+    public FyteTableRowAdapter(Activity context, ArrayList<FyteRowModel> data, ListView listView) {
         super(context, -1, data);
+        this.listView = listView;
         this.context = context;
         this.data = data;
         for(int i = 0; i < data.size(); i++){
@@ -50,15 +47,15 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteRowModel> implements A
     private FyteCell createCell(Activity context, FyteRowModel model){
         switch(model.type){
             case Acknowledge:
-                return new AcknowledgementCell(context, model);
+                return new AcknowledgementCell(this, model);
             case Alert:
-                return new AlertCell(context, model);
+                return new AlertCell(this, model);
             case Discipline:
-                return new DisciplineCell(context, model);
+                return new DisciplineCell(this, model);
             case Tracker:
-                return new TrackerUpdateCell(context, model);
+                return new TrackerUpdateCell(this, model);
             case Default:
-                return new FyteInfoCell(context, model);
+                return new FyteInfoCell(this, model);
 
         }
         return null;
@@ -73,5 +70,14 @@ public class FyteTableRowAdapter extends ArrayAdapter<FyteRowModel> implements A
         this.remove(cell.getModel());
         this.cells.remove(cell);
         this.notifyDataSetChanged();
+    }
+
+    public LayoutInflater getLayoutInflater(){
+        return context.getLayoutInflater();
+    }
+
+    public void refreshLayout(){
+        this.notifyDataSetInvalidated();
+        this.listView.invalidateViews();
     }
 }

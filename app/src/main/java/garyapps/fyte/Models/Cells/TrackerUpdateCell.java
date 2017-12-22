@@ -1,8 +1,14 @@
 package garyapps.fyte.Models.Cells;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -13,7 +19,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
@@ -35,20 +40,40 @@ public class TrackerUpdateCell extends FyteCell{
 
     private TextView disciplineTitle;
     private TextView startDate;
+    private TextView chartDesc;
+    private ImageButton changeSizeButton;
     private BarChart weeklySessionTracker;
+    private RelativeLayout layout;
 
     private FyteTrackerRowModel model;
+    private boolean isMinimized;
+    private FyteTableRowAdapter adapter;
 
-    public TrackerUpdateCell(Activity context, FyteRowModel model){
-        bindViews(context.getLayoutInflater().inflate(R.layout.tracker_discipline_cell, null), ((FyteTrackerRowModel) model));
+    public TrackerUpdateCell(FyteTableRowAdapter adapter, FyteRowModel model, boolean isMinimized){
+        this.isMinimized = isMinimized;
+        this.adapter = adapter;
+
+        bindViews(adapter.getLayoutInflater().inflate(R.layout.tracker_discipline_cell, null), ((FyteTrackerRowModel) model));
         loadChart();
+        if(this.isMinimized){
+            minimizeView();
+        }else{
+            maximizeView();
+        }
+    }
+
+    public TrackerUpdateCell(FyteTableRowAdapter adapter, FyteRowModel model){
+        this(adapter, model, true);
     }
 
     private void bindViews(View v){
         this.view = v;
+        this.layout = v.findViewById(R.id.tracker_cell_layout);
         this.disciplineTitle = v.findViewById(R.id.tracker_cell_discipline_title);
         this.startDate = v.findViewById(R.id.tracker_cell_start_date);
         this.weeklySessionTracker = v.findViewById(R.id.tracker_cell_discipline_week_session_tracker);
+        this.changeSizeButton = v.findViewById(R.id.tracker_cell_size_button);
+        this.chartDesc = v.findViewById(R.id.tracker_cell_tracker_desc);
     }
 
     private void bindViews(View v, FyteTrackerRowModel model) {
@@ -61,6 +86,57 @@ public class TrackerUpdateCell extends FyteCell{
 
         if(model.experienceLevel != ""){
             //do work
+        }
+
+        this.chartDesc.setText("Weekly Session Counter");
+
+        this.changeSizeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setIsMinimized(!isMinimized);
+            }
+        });
+
+        this.layout.getLayoutTransition().addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+
+            }
+
+            @Override
+            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+                //adapter.refreshLayout();
+                refreshLayout();
+            }
+        });
+
+    }
+
+    public void maximizeView(){
+        this.weeklySessionTracker.setVisibility(View.VISIBLE);
+        this.chartDesc.setVisibility(View.VISIBLE);
+        //refreshLayout();
+    }
+
+    public void minimizeView(){
+        this.weeklySessionTracker.setVisibility(View.GONE);
+        this.chartDesc.setVisibility(View.GONE);
+        //refreshLayout();
+    }
+
+    private void refreshLayout(){
+        this.view.forceLayout();
+        this.view.requestLayout();
+
+        this.adapter.refreshLayout();
+    }
+
+    public void setIsMinimized(boolean bool){
+        this.isMinimized = bool;
+        if(bool){
+            minimizeView();
+        }else{
+            maximizeView();
         }
     }
 
@@ -108,6 +184,7 @@ public class TrackerUpdateCell extends FyteCell{
         this.weeklySessionTracker.getAxisRight().setEnabled(false);
         this.weeklySessionTracker.getDescription().setEnabled(false);
         this.weeklySessionTracker.getLegend().setEnabled(false);
+        this.weeklySessionTracker.setTouchEnabled(false);
         this.weeklySessionTracker.invalidate();
     }
 

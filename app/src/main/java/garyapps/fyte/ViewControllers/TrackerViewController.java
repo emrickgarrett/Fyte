@@ -41,8 +41,9 @@ public class TrackerViewController extends ViewController {
         ArrayList<FyteRowModel> cells = new ArrayList<FyteRowModel>();
         cells.add(new FyteTrackerRowModel("BJJ", "Blue", -1, FyteCellType.Tracker));
         cells.add(new FyteTrackerRowModel("Wrestling", "Experienced", -1, FyteCellType.Tracker));
+        cells.add(new FyteTrackerRowModel("Kickboxing", "Beginner", -1, FyteCellType.Tracker));
 
-        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells);
+        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells, listView);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(adapter);

@@ -16,7 +16,8 @@
     <string name="title_activity_main">Fyte</string>
     <string name="title_home">Home</string>
     <string name="title_tracker">Tracker</string>
-    <string name="title_mygym">My Gym</string>
+    <string name="title_fitness">Fitness</string>
 
     <string name="profile_fightstyles_text">Disciplines:</string>
+    <string name="tracker_cell_size_button_desc">Update Size</string>
 </resources>

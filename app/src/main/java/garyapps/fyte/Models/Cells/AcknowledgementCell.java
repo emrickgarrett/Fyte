@@ -1,10 +1,5 @@
 package garyapps.fyte.Models.Cells;
 
-import android.app.Activity;
-import android.view.View;
-import android.view.animation.Animation;
-import android.widget.AdapterView;
-
 import garyapps.fyte.Adapters.FyteTableRowAdapter;
 import garyapps.fyte.Models.FyteProfileRowModel;
 import garyapps.fyte.Models.FyteRowModel;
@@ -15,8 +10,8 @@ import garyapps.fyte.Models.FyteRowModel;
 
 public class AcknowledgementCell extends FyteInfoCell {
 
-    public AcknowledgementCell(Activity context, FyteRowModel model){
-        super(context, ((FyteProfileRowModel) model));
+    public AcknowledgementCell(FyteTableRowAdapter adapter, FyteRowModel model){
+        super(adapter, ((FyteProfileRowModel) model));
 
         createDefaultAcknowledgement();
     }

@@ -1,6 +1,5 @@
 package garyapps.fyte.Models.Cells;
 
-import android.app.Activity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
@@ -16,8 +15,8 @@ import garyapps.fyte.Models.FyteRowModel;
 
 public class AlertCell extends FyteInfoCell {
 
-    public AlertCell(Activity context, FyteRowModel model) {
-        super(context, ((FyteProfileRowModel) model));
+    public AlertCell(FyteTableRowAdapter adapter, FyteRowModel model) {
+        super(adapter, ((FyteProfileRowModel) model));
 
         createAlert();
     }

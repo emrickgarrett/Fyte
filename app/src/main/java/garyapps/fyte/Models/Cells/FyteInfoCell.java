@@ -25,9 +25,11 @@ public class FyteInfoCell extends FyteCell{
     protected TextView cellDesc;
     protected ImageView cellActionImage;
     protected FyteProfileRowModel model;
+    protected FyteTableRowAdapter adapter;
 
-    public FyteInfoCell(Activity context, FyteRowModel model){
-        bindViews(context.getLayoutInflater().inflate(R.layout.home_info_cell, null),((FyteProfileRowModel) model));
+    public FyteInfoCell(FyteTableRowAdapter adapter, FyteRowModel model){
+        this.adapter = adapter;
+        bindViews(adapter.getLayoutInflater().inflate(R.layout.home_info_cell, null),((FyteProfileRowModel) model));
     }
 
     private void bindViews(View v){

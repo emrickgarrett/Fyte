@@ -8,9 +8,9 @@ import garyapps.fyte.R;
  * Created by Garrett on 12/15/2017.
  */
 
-public class UserGymsViewController extends ViewController {
+public class FitnessViewController extends ViewController {
 
-    public UserGymsViewController(Activity context){
+    public FitnessViewController(Activity context){
         super(context);
     }
 

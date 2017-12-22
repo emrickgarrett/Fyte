@@ -5,10 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
 
-import garyapps.fyte.ViewControllers.UserGymsViewController;
+import garyapps.fyte.ViewControllers.FitnessViewController;
 import garyapps.fyte.ViewControllers.HomeViewController;
 import garyapps.fyte.ViewControllers.TrackerViewController;
 
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeViewController homeController;
     private TrackerViewController trackerController;
-    private UserGymsViewController gymController;
+    private FitnessViewController gymController;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_tracker:
                     container.addView(trackerController.getView());
                     return true;
-                case R.id.navigation_mygym:
+                case R.id.navigation_fitness:
                     container.addView(gymController.getView());
                     return true;
             }
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private void createViewControllers(){
         homeController = new HomeViewController(this);
         trackerController = new TrackerViewController(this);
-        gymController = new UserGymsViewController(this);
+        gymController = new FitnessViewController(this);
     }
 
 }

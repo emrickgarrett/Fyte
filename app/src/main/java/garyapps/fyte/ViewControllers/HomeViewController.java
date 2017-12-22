@@ -45,7 +45,7 @@ public class HomeViewController extends ViewController {
         cells.add(new FyteProfileRowModel("Default Acknowledgement", "", FyteCellType.Acknowledge));
         cells.add(new FyteProfileRowModel("Alert Cell", "", FyteCellType.Alert));
 
-        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells);
+        FyteTableRowAdapter adapter = new FyteTableRowAdapter(context, cells, listView);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(adapter);

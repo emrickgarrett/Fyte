@@ -1,6 +1,5 @@
 package garyapps.fyte.Models.Cells;
 
-import android.app.Activity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
@@ -17,8 +16,8 @@ import garyapps.fyte.Models.FyteRowModel;
 public class DisciplineCell extends FyteInfoCell {
 
 
-    public DisciplineCell(Activity context, FyteRowModel model) {
-        super(context, ((FyteProfileRowModel) model));
+    public DisciplineCell(FyteTableRowAdapter adapter, FyteRowModel model) {
+        super(adapter, ((FyteProfileRowModel) model));
 
         createCell();
     }
