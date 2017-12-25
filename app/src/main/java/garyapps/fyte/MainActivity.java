@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeViewController homeController;
     private TrackerViewController trackerController;
-    private FitnessViewController gymController;
+    private FitnessViewController fitnessController;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                     container.addView(trackerController.getView());
                     return true;
                 case R.id.navigation_fitness:
-                    container.addView(gymController.getView());
+                    container.addView(fitnessController.getView());
                     return true;
             }
             return false;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private void createViewControllers(){
         homeController = new HomeViewController(this);
         trackerController = new TrackerViewController(this);
-        gymController = new FitnessViewController(this);
+        fitnessController = new FitnessViewController(this);
     }
 
 }

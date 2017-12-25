@@ -155,7 +155,8 @@ public class Mocks {
                 for(int k = 0; k < 7; k++){
                     JSONObject day = new JSONObject();
                     try {
-                        float dayCount = (float) (Math.random() * 0.3) * -1.0f;
+                        float limit = 0.6f;
+                        float dayCount = (float) (Math.random() * limit) -limit/2;
                         weekCount += dayCount;
                         day.put("count", dayCount);
                         day.put("id", k);

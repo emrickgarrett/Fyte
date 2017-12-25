@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import garyapps.fyte.Models.CalendarData.Day;
@@ -43,7 +44,7 @@ public class FitnessProfileView extends RelativeLayout {
 
         View v = context.getLayoutInflater().inflate(R.layout.fitness_progress_cell, null);
 
-        //v.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 200));
+        v.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 600));
 
         this.bindViews(v);
         this.bindValues();
@@ -85,12 +86,8 @@ public class FitnessProfileView extends RelativeLayout {
                 maxWeightChange = totalWeightChange;
             }
         }
-        this.weightChange.setText("" + totalWeightChange + " " + Shared.appUser.getWeightUnit());
-        if(totalWeightChange > 0){
-            this.weightChange.setTextColor(Color.GREEN);
-        }else{
-            this.weightChange.setTextColor(Color.RED);
-        }
+
+        updateWeightTextView(totalWeightChange);
 
         LineDataSet dataSet = new LineDataSet(entries, "Weekly Results");
         dataSet.setDrawValues(false);
@@ -130,5 +127,15 @@ public class FitnessProfileView extends RelativeLayout {
         this.weightChart.invalidate();
     }
 
+    private void updateWeightTextView(float val){
+        String weight = String.format("%.2f", val);
+
+        this.weightChange.setText("" + weight + " " + Shared.appUser.getWeightUnit());
+        if(val > 0){
+            this.weightChange.setTextColor(Color.GREEN);
+        }else{
+            this.weightChange.setTextColor(Color.RED);
+        }
+    }
 
 }

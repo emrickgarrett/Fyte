@@ -1,6 +1,7 @@
 package garyapps.fyte.ViewControllers;
 
 import android.app.Activity;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import garyapps.fyte.R;
@@ -23,6 +24,6 @@ public class FitnessViewController extends ViewController {
 
     @Override
     void inflateView() {
-        view = context.getLayoutInflater().inflate(R.layout.usergyms_view, null);
+        view = context.getLayoutInflater().inflate(R.layout.fitness_view, null);
     }
 }
