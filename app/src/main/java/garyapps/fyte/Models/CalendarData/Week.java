@@ -10,11 +10,11 @@ import garyapps.fyte.Utilities.Shared;
 
 public class Week implements Serializable {
     private ArrayList<Day> days = new ArrayList<Day>();
-    public int sessionCount;
+    public float count;
 
-    public Week(ArrayList<Day> days, int sessionCount){
+    public Week(ArrayList<Day> days, float count){
         this.days = days;
-        this.sessionCount = sessionCount;
+        this.count = count;
     }
 
     public Week(JSONObject obj){
@@ -23,7 +23,7 @@ public class Week implements Serializable {
 
     private void loadJson(JSONObject obj){
         try{
-            this.sessionCount = obj.getInt("sessionCount");
+            this.count = (float) obj.getDouble("count");
             JSONArray dayArr = obj.getJSONArray("days");
 
             for(int i = 0; i < dayArr.length(); i++){

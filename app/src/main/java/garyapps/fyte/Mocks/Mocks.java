@@ -34,7 +34,7 @@ public class Mocks {
 
     public static User getUser(){
         return new User(new ContactInformation("Garrett", "Emrick","emrickgj@miamioh.edu"),
-                getGyms(), getFightingStyles(), new TrainingData(226, 6));
+                getGyms(), getFightingStyles(), new TrainingData(226, 6, 185));
     }
 
     public static List<User> getMembers(){
@@ -75,22 +75,23 @@ public class Mocks {
         JSONObject obj = new JSONObject();
         JSONArray yearArr = new JSONArray();
         JSONObject year = new JSONObject();
-        int yearSessionCount = 0;
+        int yearCount = 0;
         JSONArray monthArr = new JSONArray();
         for(int i = 0; i < 12; i++){
             JSONObject month = new JSONObject();
-            int monthSessionCount = 0;
+            int monthCount
+                    = 0;
             JSONArray weekArr = new JSONArray();
-            for(int j = 0; j < 4; j++){
+            for(int j = 0; j < 5; j++){
                 JSONObject week = new JSONObject();
-                int weekSessionCount = 0;
+                int weekCount = 0;
                 JSONArray dayArr = new JSONArray();
                 for(int k = 0; k < 7; k++){
                     JSONObject day = new JSONObject();
                     try {
-                        int daySessionCount = (int) (Math.random() * 4);
-                        weekSessionCount += daySessionCount;
-                        day.put("sessionCount", daySessionCount);
+                        int dayCount = (int) (Math.random() * 4);
+                        weekCount += dayCount;
+                        day.put("count", dayCount);
                         day.put("id", k);
                     }catch(Exception e){
                         Log.e("Mocks", "Error creating Tracker Data");
@@ -99,8 +100,9 @@ public class Mocks {
                     dayArr.put(day);
                 }
                 try {
-                    monthSessionCount += weekSessionCount;
-                    week.put("sessionCount", weekSessionCount);
+                    monthCount
+                            += weekCount;
+                    week.put("count", weekCount);
                     week.put("days", dayArr);
                 }catch(Exception e){
                     Log.e("Mocks", "Error creating Tracker Data");
@@ -109,8 +111,10 @@ public class Mocks {
                 weekArr.put(week);
             }
             try{
-                yearSessionCount += monthSessionCount;
-                month.put("sessionCount", monthSessionCount);
+                yearCount += monthCount
+                ;
+                month.put("count", monthCount
+                );
                 month.put("weeks", weekArr);
             }catch(Exception e){
                 Log.e("Mocks", "Error creating Tracker Data");
@@ -119,11 +123,11 @@ public class Mocks {
             monthArr.put(month);
         }
         try{
-            year.put("sessionCount", yearSessionCount);
+            year.put("count", yearCount);
             year.put("year", 2017);
             year.put("months", monthArr);
             yearArr.put(year);
-            obj.put("sessionCount", yearSessionCount); // reuse year since we only do one
+            obj.put("count", yearCount); // reuse year since we only do one
             obj.put("years", yearArr);
         }catch(Exception e){
             Log.e("Mocks", "Error creating Tracker Data");
@@ -131,5 +135,73 @@ public class Mocks {
         }
 
         return new TrackerData(obj);
+    }
+
+    public static TrackerData getWeightTrackerData(){
+        JSONObject obj = new JSONObject();
+        JSONArray yearArr = new JSONArray();
+        JSONObject year = new JSONObject();
+        float yearCount = 0;
+        JSONArray monthArr = new JSONArray();
+        for(int i = 0; i < 12; i++){
+            JSONObject month = new JSONObject();
+            float monthCount
+                    = 0;
+            JSONArray weekArr = new JSONArray();
+            for(int j = 0; j < 5; j++){
+                JSONObject week = new JSONObject();
+                float weekCount = 0;
+                JSONArray dayArr = new JSONArray();
+                for(int k = 0; k < 7; k++){
+                    JSONObject day = new JSONObject();
+                    try {
+                        float dayCount = (float) (Math.random() * 0.3) * -1.0f;
+                        weekCount += dayCount;
+                        day.put("count", dayCount);
+                        day.put("id", k);
+                    }catch(Exception e){
+                        Log.e("Mocks", "Error creating Tracker Data");
+                        System.err.print(e);
+                    }
+                    dayArr.put(day);
+                }
+                try {
+                    monthCount
+                            += weekCount;
+                    week.put("count", weekCount);
+                    week.put("days", dayArr);
+                }catch(Exception e){
+                    Log.e("Mocks", "Error creating Tracker Data");
+                    System.err.print(e);
+                }
+                weekArr.put(week);
+            }
+            try{
+                yearCount += monthCount
+                ;
+                month.put("count", monthCount
+                );
+                month.put("weeks", weekArr);
+            }catch(Exception e){
+                Log.e("Mocks", "Error creating Tracker Data");
+                System.err.print(e);
+            }
+            monthArr.put(month);
+        }
+        try{
+            year.put("count", yearCount);
+            year.put("year", 2017);
+            year.put("months", monthArr);
+            yearArr.put(year);
+            obj.put("count", yearCount); // reuse year since we only do one
+            obj.put("years", yearArr);
+        }catch(Exception e){
+            Log.e("Mocks", "Error creating Weight Tracker Data");
+            System.err.print(e);
+        }
+
+
+        return new TrackerData(obj);
+
     }
 }

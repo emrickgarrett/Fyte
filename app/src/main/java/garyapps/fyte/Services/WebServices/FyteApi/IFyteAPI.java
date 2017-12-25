@@ -24,4 +24,5 @@ public interface IFyteAPI {
     public Result<User> loginUser(String username, String password);
     public Result<TrackerData> fetchUserTrackerData(int id);
     public Result<TrackerData> fetchUserDisciplineTrackerData(int userId, int disciplineId);
+    public Result<TrackerData> fetchUserWeightTrackerData(int userId);
 }

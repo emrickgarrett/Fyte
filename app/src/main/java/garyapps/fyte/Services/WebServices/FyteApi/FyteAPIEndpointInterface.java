@@ -46,6 +46,9 @@ public interface FyteAPIEndpointInterface {
     @GET("users/disciplinetracker")
     Call<Result<TrackerData>> fetchUserDisciplineTrackerData(@Query("id") int id, @Query("disciplineId") int disciplineId);
 
+    @GET("users/weighttracker")
+    Call<Result<TrackerData>> fetchUserWeightTrackerData(@Query("id") int id);
+
     @POST("users/new")
     Call<Result<User>> createUser(@Body User user);
 

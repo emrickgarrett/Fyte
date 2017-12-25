@@ -8,14 +8,14 @@ import garyapps.fyte.Utilities.DateHelper;
 import garyapps.fyte.Utilities.Shared;
 
 public class Day implements Serializable {
-    private int sessionCount;
+    private float count;
     private int day;
     private String shortName;
     private String longName;
 
-    public Day(int day, int sessionCount){
+    public Day(int day, float count){
         this.day = day;
-        this.sessionCount = sessionCount;
+        this.count = count;
         this.shortName = DateHelper.parseShortDayName(day);
         this.longName = DateHelper.parseLongDayName(day);
     }
@@ -26,7 +26,7 @@ public class Day implements Serializable {
 
     private void loadJSONObj(int day,JSONObject obj){
         try{
-            this.sessionCount = obj.getInt("sessionCount");
+            this.count = (float) obj.getDouble("count");
             this.day = day;
             this.longName = DateHelper.parseLongDayName(day);
             this.shortName = DateHelper.parseShortDayName(day);
@@ -38,6 +38,6 @@ public class Day implements Serializable {
 
     public String getShortName() { return this.shortName; }
     public String getLongName() { return this.longName; }
-    public int getSessionCount() { return this.sessionCount; }
+    public float getCount() { return this.count; }
     public int getIntValue() { return this.day; }
 }

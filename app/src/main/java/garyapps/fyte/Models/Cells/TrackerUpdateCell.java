@@ -140,7 +140,7 @@ public class TrackerUpdateCell extends FyteCell{
         ArrayList<Day> days  = calendarData.getCurrentWeek();
 
         for(Day day : days){
-            entries.add(new BarEntry(day.getIntValue(), day.getSessionCount()));
+            entries.add(new BarEntry(day.getIntValue(), day.getCount()));
         }
 
         BarDataSet dataSet = new BarDataSet(entries, "Weekly Results");

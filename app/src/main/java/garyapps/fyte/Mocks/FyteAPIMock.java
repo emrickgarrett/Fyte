@@ -69,4 +69,9 @@ public class FyteAPIMock implements IFyteAPI {
     public Result<TrackerData> fetchUserDisciplineTrackerData(int userId, int disciplineId){
         return new Result<TrackerData>("", false, Mocks.getTrackerData());
     }
+
+    @Override
+    public Result<TrackerData> fetchUserWeightTrackerData(int id){
+        return new Result<TrackerData>("", false, Mocks.getWeightTrackerData());
+    }
 }

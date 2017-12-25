@@ -9,16 +9,16 @@ import garyapps.fyte.Utilities.Shared;
 
 public class Year implements Serializable {
     private Month[] months = new Month[12];
-    public int sessionCount = 0;
+    public float count = 0;
     private int year;
 
     public Year(){
 
     }
 
-    public Year(Month[] months, int sessionCount){
+    public Year(Month[] months, float count){
         this.months = months;
-        this.sessionCount = sessionCount;
+        this.count = count;
     }
 
     public Year(JSONObject obj){
@@ -28,7 +28,7 @@ public class Year implements Serializable {
     private void loadJson(JSONObject obj){
         try{
             this.year = obj.getInt("year");
-            this.sessionCount = obj.getInt("sessionCount");
+            this.count = (float) obj.getDouble("count");
             JSONArray arr = obj.getJSONArray("months");
             for(int i = 0; i < arr.length(); i++){
                 Month month = new Month(i, arr.getJSONObject(i));

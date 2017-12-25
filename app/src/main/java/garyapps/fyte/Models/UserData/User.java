@@ -95,4 +95,10 @@ public class User {
 
     public int getId(){ return this.id; }
 
+    public float getWeight(){ return trainingData.getWeight(); }
+
+    public String getWeightUnit(){ return trainingData.getUnit(); }
+
+    public String getWeightWithUnit() { return getWeight() + " " + getWeightUnit(); }
+
 }

@@ -12,7 +12,7 @@ import garyapps.fyte.Utilities.Shared;
 public class Month implements Serializable {
 
     private ArrayList<Week> weeks = new ArrayList<Week>();
-    public int sessionCount;
+    public float count;
     public int month;
     public String monthShortName;
     public String monthLongName;
@@ -21,9 +21,9 @@ public class Month implements Serializable {
         this(month, 0);
     }
 
-    public Month(int month, int sessionCount){
+    public Month(int month, float count){
         this.month = month;
-        this.sessionCount = sessionCount;
+        this.count = count;
         this.monthShortName = DateHelper.parseMonthShortNameFromInt(month);
         this.monthLongName = DateHelper.parseMonthLongNameFromInt(month);
     }
@@ -34,7 +34,7 @@ public class Month implements Serializable {
 
     private void loadJson(int month, JSONObject obj){
         try{
-            this.sessionCount = obj.getInt("sessionCount");
+            this.count = (float) obj.getDouble("count");
             JSONArray dayArr = obj.getJSONArray("weeks");
 
             for(int i = 0; i < dayArr.length(); i++){

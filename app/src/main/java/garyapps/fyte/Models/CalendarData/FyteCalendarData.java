@@ -19,33 +19,33 @@ import garyapps.fyte.Utilities.Shared;
  */
 
 public class FyteCalendarData implements Serializable {
-    private int sessionCount;
+    private int count;
     private Hashtable<Integer, Year> yearlyData;
 
     public FyteCalendarData(){
-        this.sessionCount = 0;
+        this.count = 0;
         this.yearlyData = new Hashtable<Integer, Year>();
     }
 
-    public FyteCalendarData(int sessionCount, Hashtable<Integer, Year> yearlyData){
-        this.sessionCount = sessionCount;
+    public FyteCalendarData(int count, Hashtable<Integer, Year> yearlyData){
+        this.count = count;
         this.yearlyData = yearlyData;
     }
 
     public int getTotalSessions(){
-        return sessionCount;
+        return count;
     }
 
-    public int getYearlySessions(int year){
-        return yearlyData.get(year).sessionCount;
+    public float getYearlySessions(int year){
+        return yearlyData.get(year).count;
     }
 
-    public int getMonthSessionsForYear(int year, int month){
-        return yearlyData.get(year).getMonth(month).sessionCount;
+    public float getMonthSessionsForYear(int year, int month){
+        return yearlyData.get(year).getMonth(month).count;
     }
 
-    public int getWeekSessionsForYear(int year, int month, int week){
-        return yearlyData.get(year).getMonth(month).getWeek(week).sessionCount;
+    public float getWeekSessionsForYear(int year, int month, int week){
+        return yearlyData.get(year).getMonth(month).getWeek(week).count;
     }
 
     public Year getYearData(int year){
@@ -78,10 +78,15 @@ public class FyteCalendarData implements Serializable {
         loadJson(result.getResultObject().getJson());
     }
 
+    public void fetchWeightData() {
+        final Result<TrackerData> result = Shared.fyteAPI.fetchUserWeightTrackerData(Shared.appUser.getId());
+        loadJson(result.getResultObject().getJson());
+    }
+
     private void loadJson(JSONObject json){
         //Now load the data!
          try {
-            this.sessionCount = json.getInt("sessionCount");
+            this.count = json.getInt("count");
             JSONArray yearArr = json.getJSONArray("years");
 
             for(int i = 0; i < yearArr.length(); i++){
@@ -95,6 +100,5 @@ public class FyteCalendarData implements Serializable {
             Shared.logError("FyteCalendarData", e.getStackTrace());
         }
     }
-
 }
 
