@@ -85,7 +85,7 @@ public class FitnessProfileView extends RelativeLayout {
                 maxWeightChange = totalWeightChange;
             }
         }
-        this.weightChange.setText("" + totalWeightChange);
+        this.weightChange.setText("" + totalWeightChange + " " + Shared.appUser.getWeightUnit());
         if(totalWeightChange > 0){
             this.weightChange.setTextColor(Color.GREEN);
         }else{
