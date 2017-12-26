@@ -6,22 +6,21 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 import garyapps.fyte.R;
-import garyapps.fyte.Utilities.DateHelper;
 import garyapps.fyte.Utilities.Shared;
 
 /**
- * Created by garrettemrick on 12/18/17.
+ * Created by garrettemrick on 12/17/17.
  */
 
-public class TrackerProfileView extends RelativeLayout{
+public class TrackerProfileView extends RelativeLayout {
 
-    private TextView userName;
-    private TextView record;
-    private TextView date;
-    private TextView weight;
+    private TextView fullNameTv;
+    private TextView fightingStylesTv;
+    private TextView dayStreakLabelTv;
+    private TextView dayStreakNumberTv;
+    private TextView sessionNumberTv;
+    private TextView sessionLabelTv;
 
     public TrackerProfileView(Activity context) {
         super(context);
@@ -36,18 +35,21 @@ public class TrackerProfileView extends RelativeLayout{
     }
 
     private void bindView(View v){
-        this.userName = v.findViewById(R.id.tracker_profile_full_name);
-        this.record = v.findViewById(R.id.tracker_profile_record);
-        this.date = v.findViewById(R.id.tracker_profile_date);
-        this.weight = v.findViewById(R.id.tracker_profile_weight);
+        fullNameTv = v.findViewById(R.id.tracker_profile_full_name);
+        fightingStylesTv = v.findViewById(R.id.tracker_profile_fighting_styles);
+        dayStreakLabelTv = v.findViewById(R.id.tracker_profile_currentDayStreakDays);
+        dayStreakNumberTv = v.findViewById(R.id.tracker_profile_currentDayStreakNumber);
+        sessionNumberTv = v.findViewById(R.id.tracker_profile_totalTrainingSessionsNumber);
+        sessionLabelTv = v.findViewById(R.id.tracker_profile_totalTrainingSessionsLabel);
     }
 
     private void bindValues(){
-        this.userName.setText(Shared.appUser.getFullName());
-        this.record.setText(""); //TODO after initial release
-        this.date.setText(DateHelper.getCurrentDateFormatted());
-        this.weight.setText("180 lbs");//TODO create fitness object to hold basic fitness data
-
+        fullNameTv.setText(Shared.appUser.getFullName());
+        fightingStylesTv.setText(Shared.appUser.getFightingStylesListAsString());
+        dayStreakLabelTv.setText("days");
+        dayStreakNumberTv.setText(Shared.appUser.getDayStreak() + "");
+        sessionNumberTv.setText(Shared.appUser.getSessionCounter() + "");
+        sessionLabelTv.setText("sessions");
     }
 
 }

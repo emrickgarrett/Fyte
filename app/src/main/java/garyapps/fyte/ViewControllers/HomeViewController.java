@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -13,9 +12,8 @@ import garyapps.fyte.Adapters.FyteTableRowAdapter;
 import garyapps.fyte.Enums.FyteCellType;
 import garyapps.fyte.Models.FyteRowModel;
 import garyapps.fyte.R;
-import garyapps.fyte.Views.Home.HomeProfileView;
 import garyapps.fyte.Models.FyteProfileRowModel;
-import garyapps.fyte.Views.Home.TrackerProfileView;
+import garyapps.fyte.Views.Home.HomeProfileView;
 
 /**
  * Created by Garrett on 12/14/2017.

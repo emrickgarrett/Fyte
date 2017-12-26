@@ -55,13 +55,14 @@
 
     <ImageButton
         android:id="@+id/tracker_cell_size_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tracker_cell_expandable_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/tracker_cell_size_button_desc"
-        android:src="@android:drawable/arrow_down_float" />
+        android:background="@color/white"
+        android:src="@drawable/arrow_down_24dp" />
 
 
 </RelativeLayout>

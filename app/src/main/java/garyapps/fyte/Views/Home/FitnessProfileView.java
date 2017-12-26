@@ -11,15 +11,11 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import garyapps.fyte.Models.CalendarData.Day;
@@ -50,6 +46,7 @@ public class FitnessProfileView extends RelativeLayout {
         this.bindValues();
         this.addView(v);
     }
+
 
     private void bindViews(View v){
         this.fullName = v.findViewById(R.id.fitness_full_name);

@@ -2,6 +2,7 @@ package garyapps.fyte.Models.Cells;
 
 import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,18 +104,13 @@ public class TrackerUpdateCell extends FyteCell{
     }
 
     public void maximizeView(){
-        //this.weeklySessionTracker.setVisibility(View.VISIBLE);
-        //this.chartDesc.setVisibility(View.VISIBLE);
-        //this.changeSizeButton.setImageDrawable();
-        //refreshLayout();
+        this.changeSizeButton.setImageResource(R.drawable.arrow_up_24dp);
         expandableLayout.expand(true);
     }
 
     public void minimizeView(){
         expandableLayout.collapse(true);
-        //this.weeklySessionTracker.setVisibility(View.GONE);
-        //this.chartDesc.setVisibility(View.GONE);
-        //refreshLayout();
+        this.changeSizeButton.setImageResource(R.drawable.arrow_down_24dp);
     }
 
     private void refreshLayout(){
@@ -183,7 +179,6 @@ public class TrackerUpdateCell extends FyteCell{
 
     @Override
     public void onClick(final FyteTableRowAdapter adapter, final View view, final int position) {
-
         //TODO send user to view of this discipline and other useful info
     }
 

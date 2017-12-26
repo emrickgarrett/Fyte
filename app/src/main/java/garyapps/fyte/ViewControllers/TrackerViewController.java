@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,6 @@ import garyapps.fyte.Models.FyteRowModel;
 import garyapps.fyte.Models.FyteTrackerRowModel;
 import garyapps.fyte.R;
 import garyapps.fyte.Utilities.Shared;
-import garyapps.fyte.Views.Home.TrackerProfileView;
 
 /**
  * Created by Garrett on 12/15/2017.
@@ -42,7 +40,7 @@ public class TrackerViewController extends ViewController {
 
 
         //Do Work
-        trackerTable.addView(new TrackerProfileView(context));
+        trackerTable.addView(new garyapps.fyte.Views.Home.TrackerProfileView(context));
         trackerTable.addView(recyclerView);
 
         createTrackerCells();
